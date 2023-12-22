@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <!--GENERAL CONFIGURATION-->
+        <section id="betterpayment" translate="label" showInDefault="1">
+            <label>Better Payment</label>
+            <tab>sales</tab>
+            <resource>BetterPayment_Core::betterpayment_config</resource>
+            <!--BASE CONFIGURATION-->
+            <group id="base_configuration" translate="label" sortOrder="10" showInDefault="1">
+                <label>Base configuration</label>
+                <field id="environment" translate="label" type="select" showInDefault="1">
+                    <label>Environment</label>
+                    <source_model>BetterPayment\Core\Model\Config\Source\Environment</source_model>
+                </field>
+                <field id="whitelabel" translate="label" type="select" showInDefault="1">
+                    <label>Select your payment provider</label>
+                    <source_model>BetterPayment\Core\Model\Config\Source\Whitelabel</source_model>
+                    <comment>Select test for testing purposes. Use production only for your live shops.</comment>
+                </field>
+            </group>
+            <!--TEST ENVIRONMENT CREDENTIALS-->
+            <group id="test_environment_credentials" translate="label" sortOrder="20" showInDefault="1">
+                <label>Test environment credentials</label>
+                <field id="testApiKey" translate="label" type="text" showInDefault="1">
+                    <label>API key</label>
+                    <comment>You can find your test API key in test dashboard of the payment provider.</comment>
+                </field>
+                <field id="testOutgoingKey" translate="label" type="text" showInDefault="1">
+                    <label>Outgoing key</label>
+                    <comment>You can find your test Outgoing key in test dashboard of the payment provider.</comment>
+                </field>
+                <field id="testIncomingKey" translate="label" type="text" showInDefault="1">
+                    <label>Incoming key</label>
+                    <comment>You can find your test Incoming key in test dashboard of the payment provider.</comment>
+                </field>
+            </group>
+            <!--PRODUCTION ENVIRONMENT CREDENTIALS-->
+            <group id="production_environment_credentials" translate="label" sortOrder="30" showInDefault="1">
+                <label>Production environment credentials</label>
+                <field id="productionApiKey" translate="label" type="text" showInDefault="1">
+                    <label>API key</label>
+                    <comment>You can find your production API key in production dashboard of the payment provider.</comment>
+                </field>
+                <field id="productionOutgoingKey" translate="label" type="text" showInDefault="1">
+                    <label>Outgoing key</label>
+                    <comment>You can find your production Outgoing key in production dashboard of the payment provider.</comment>
+                </field>
+                <field id="productionIncomingKey" translate="label" type="text" showInDefault="1">
+                    <label>Incoming key</label>
+                    <comment>You can find your production Incoming key in production dashboard of the payment provider.</comment>
+                </field>
+            </group>
+        </section>
+
+        <!--PAYMENT METHODS CONFIGURATION-->
+        <section id="payment">
+            <group id="betterpayment_credit_card" translate="label" showInDefault="1">
+                <label>Credit Card (Better Payment)</label>
+                <field id="active" translate="label" type="select" showInDefault="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" showInDefault="1">
+                    <label>Title</label>
+<!--                    <comment></comment>-->
+                </field>
+            </group>
+
+            <group id="custompurchaseorder" translate="label" type="text" sortOrder="10" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label><![CDATA[Custom Purchase Order]]></label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="0" canRestore="1">
+                    <label><![CDATA[Enabled]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label><![CDATA[Title]]></label>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label><![CDATA[Sort Order]]></label>
+                    <frontend_class>validate-number</frontend_class>
+                </field>
+                <field id="order_status" translate="label" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label><![CDATA[New Order Status]]></label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status\NewStatus</source_model>
+                </field>
+                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label><![CDATA[Payment from Applicable Countries]]></label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="51" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label><![CDATA[Payment from Specific Countries]]></label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
