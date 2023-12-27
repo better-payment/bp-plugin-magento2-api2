@@ -20,17 +20,17 @@
             <!-- ko template: getTemplate() --><!-- /ko -->
             <!--/ko-->
         </div>
-        <div class="actions-toolbar">
+        <div class="actions-toolbar" id="review-buttons-container">
             <div class="primary">
                 <button class="action primary checkout"
                         type="submit"
                         data-bind="
                         click: placeOrder,
                         attr: {title: $t('Place Order')},
-                        css: {disabled: !isPlaceOrderActionAllowed()},
-                        enable: (getCode() == isChecked())
+                        enable: (getCode() == isChecked()),
+                        css: {disabled: !isPlaceOrderActionAllowed()}
                         "
-                        disabled>
+                        data-role="review-save">
                     <span data-bind="i18n: 'Place Order'"></span>
                 </button>
             </div>

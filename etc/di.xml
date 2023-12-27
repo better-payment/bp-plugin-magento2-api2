@@ -1,41 +1,73 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
-<!--    <virtualType name="CreditCardFacade" type="Magento\Payment\Model\Method\Adapter">-->
-<!--        <arguments>-->
-<!--            <argument name="code" xsi:type="const">BetterPayment\Core\Model\PaymentMethod\CreditCard::CODE</argument>-->
-<!--            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form\Cc</argument>-->
-<!--            <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\ConfigurableInfo</argument>-->
-<!--            <argument name="valueHandlerPool" xsi:type="object">CreditCardValueHandlerPool</argument>-->
-<!--&lt;!&ndash;            <argument name="validatorPool" xsi:type="object">CreditCardValidatorPool</argument>&ndash;&gt;-->
-<!--            <argument name="commandPool" xsi:type="object">CreditCardCommandPool</argument>-->
-<!--        </arguments>-->
-<!--    </virtualType>-->
+    <virtualType name="CreditCardFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+<!--            <argument name="code" xsi:type="const">BetterPayment\Core\Model\PaymentMethods\CreditCard::CODE</argument>-->
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form\Cc</argument>
+            <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\ConfigurableInfo</argument>
+            <argument name="valueHandlerPool" xsi:type="object">BetterPaymentValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">BetterPaymentCommandPool</argument>
+<!--            <argument name="validatorPool" xsi:type="object">CreditCardValidatorPool</argument>-->
+        </arguments>
+    </virtualType>
 
-<!--    <virtualType name="CreditCardValueHandlerPool" type="Magento\Payment\Gateway\Config\ConfigValueHandler">-->
-<!--        <arguments>-->
-<!--            <argument name="handlers" xsi:type="array">-->
-<!--                <item name="default" xsi:type="string">Magento\Payment\Gateway\Config\Config</item>-->
-<!--            </argument>-->
-<!--        </arguments>-->
-<!--    </virtualType>-->
+    <!--  BetterPaymentValueHandlerPool START  -->
+    <virtualType name="BetterPaymentValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">BetterPaymentConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
 
-<!--    <virtualType name="CreditCardCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">-->
-<!--        <arguments>-->
-<!--            <argument name="commands" xsi:type="array">-->
-<!--                <item name="order" xsi:type="string">Magento\Payment\Gateway\Command\GatewayCommand</item>-->
-<!--            </argument>-->
-<!--        </arguments>-->
-<!--    </virtualType>-->
+    <virtualType name="BetterPaymentConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">BetterPaymentConfig</argument>
+        </arguments>
+    </virtualType>
 
-<!--&lt;!&ndash;    <virtualType name="CreditCardOrderCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">&ndash;&gt;-->
-<!--&lt;!&ndash;        <arguments>&ndash;&gt;-->
-<!--&lt;!&ndash;            <argument name="requestBuilder" xsi:type="object">BraintreeAuthorizeRequest</argument>&ndash;&gt;-->
-<!--&lt;!&ndash;            <argument name="transferFactory" xsi:type="object">Magento\Braintree\Gateway\Http\TransferFactory</argument>&ndash;&gt;-->
-<!--&lt;!&ndash;            <argument name="client" xsi:type="object">Magento\Braintree\Gateway\Http\Client\TransactionSale</argument>&ndash;&gt;-->
-<!--&lt;!&ndash;            <argument name="handler" xsi:type="object">BraintreeAuthorizationHandler</argument>&ndash;&gt;-->
-<!--&lt;!&ndash;            <argument name="validator" xsi:type="object">Magento\Braintree\Gateway\Validator\ResponseValidator</argument>&ndash;&gt;-->
-<!--&lt;!&ndash;            <argument name="errorMessageMapper" xsi:type="object">Magento\Braintree\Gateway\ErrorMapper\VirtualErrorMessageMapper</argument>&ndash;&gt;-->
-<!--&lt;!&ndash;        </arguments>&ndash;&gt;-->
-<!--&lt;!&ndash;    </virtualType>&ndash;&gt;-->
+    <virtualType name="BetterPaymentConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">BetterPayment\Core\Model\PaymentMethods\CreditCard::CODE</argument>
+        </arguments>
+    </virtualType>
+    <!--  BetterPaymentValueHandlerPool END  -->
 
+    <!--  BetterPaymentCommandPool START  -->
+    <virtualType name="BetterPaymentCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="order" xsi:type="string">BetterPaymentOrderCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="BetterPaymentOrderCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">BetterPaymentOrderRequest</argument>
+<!--            <argument name="transferFactory" xsi:type="object">Magento\Braintree\Gateway\Http\TransferFactory</argument>-->
+<!--            <argument name="client" xsi:type="object">Magento\Braintree\Gateway\Http\Client\TransactionSale</argument>-->
+<!--            <argument name="handler" xsi:type="object">BraintreeAuthorizationHandler</argument>-->
+<!--            <argument name="validator" xsi:type="object">Magento\Braintree\Gateway\Validator\ResponseValidator</argument>-->
+<!--            <argument name="errorMessageMapper" xsi:type="object">Magento\Braintree\Gateway\ErrorMapper\VirtualErrorMessageMapper</argument>-->
+        </arguments>
+    </virtualType>
+
+    <virtualType name="BetterPaymentOrderRequest" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="payment" xsi:type="string">BetterPayment\Core\Gateway\Request\PaymentDataBuilder</item>
+<!--                <item name="customer" xsi:type="string">Magento\Braintree\Gateway\Request\CustomerDataBuilder</item>-->
+<!--                <item name="channel" xsi:type="string">Magento\Braintree\Gateway\Request\ChannelDataBuilder</item>-->
+<!--                <item name="address" xsi:type="string">Magento\Braintree\Gateway\Request\AddressDataBuilder</item>-->
+<!--                <item name="vault" xsi:type="string">Magento\Braintree\Gateway\Request\VaultDataBuilder</item>-->
+<!--                <item name="3dsecure" xsi:type="string">Magento\Braintree\Gateway\Request\ThreeDSecureDataBuilder</item>-->
+<!--                <item name="device_data" xsi:type="string">Magento\Braintree\Gateway\Request\KountPaymentDataBuilder</item>-->
+<!--                <item name="dynamic_descriptor" xsi:type="string">Magento\Braintree\Gateway\Request\DescriptorDataBuilder</item>-->
+<!--                <item name="store" xsi:type="string">Magento\Braintree\Gateway\Request\StoreConfigBuilder</item>-->
+<!--                <item name="merchant_account" xsi:type="string">Magento\Braintree\Gateway\Request\MerchantAccountDataBuilder</item>-->
+            </argument>
+        </arguments>
+    </virtualType>
+    <!--  BetterPaymentCommandPool END  -->
 </config>

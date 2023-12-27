@@ -11,9 +11,15 @@
             <betterpayment_credit_card>
                 <active>1</active>
                 <title>Credit Card | Better Payment</title>
+                <model>CreditCardFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
-                <model>CreditCardFacade</model>
+
+<!--                <order_status>pending</order_status>-->
+<!--                <allowspecific>0</allowspecific>-->
+<!--                <group>offline</group>-->
+<!--                <can_use_internal>1</can_use_internal>-->
+<!--                <is_offline>1</is_offline>-->
 
 <!--                <payment_action>authorize</payment_action>-->
 <!--                <can_use_internal>1</can_use_internal>-->
@@ -45,17 +51,6 @@
 <!--                <cvv_ems_adapter>Magento\Braintree\Model\CvvEmsCodeMapper</cvv_ems_adapter>-->
 <!--                <group>braintree_group</group>-->
             </betterpayment_credit_card>
-            <custompurchaseorder>
-                <active>1</active>
-                <title>Custom Purchase Order</title>
-                <order_status>pending</order_status>
-                <allowspecific>0</allowspecific>
-                <model>PurchaseOrderPaymentFacade</model>
-                <group>offline</group>
-                <can_use_internal>1</can_use_internal>
-                <can_use_checkout>1</can_use_checkout>
-                <is_offline>1</is_offline>
-            </custompurchaseorder>
         </payment>
     </default>
 </config>
