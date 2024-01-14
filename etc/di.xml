@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <virtualType name="CreditCardFacade" type="Magento\Payment\Model\Method\Adapter">
         <arguments>
-<!--            <argument name="code" xsi:type="const">BetterPayment\Core\Model\PaymentMethods\CreditCard::CODE</argument>-->
+            <argument name="code" xsi:type="const">BetterPayment\Core\Model\PaymentMethods\CreditCard::CODE</argument>
             <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form\Cc</argument>
             <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\ConfigurableInfo</argument>
             <argument name="valueHandlerPool" xsi:type="object">BetterPaymentValueHandlerPool</argument>
@@ -45,9 +45,11 @@
     <virtualType name="BetterPaymentOrderCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
         <arguments>
             <argument name="requestBuilder" xsi:type="object">BetterPaymentOrderRequest</argument>
-<!--            <argument name="transferFactory" xsi:type="object">Magento\Braintree\Gateway\Http\TransferFactory</argument>-->
-<!--            <argument name="client" xsi:type="object">Magento\Braintree\Gateway\Http\Client\TransactionSale</argument>-->
-<!--            <argument name="handler" xsi:type="object">BraintreeAuthorizationHandler</argument>-->
+            <argument name="transferFactory" xsi:type="object">BetterPayment\Core\Gateway\Http\TransferFactory</argument>
+            <argument name="client" xsi:type="object">BetterPayment\Core\Gateway\Http\Client\BetterPaymentClient</argument>
+            <argument name="handler" xsi:type="object">BetterPayment\Core\Gateway\Response\CreditCardHandler</argument>
+
+<!--            <argument name="logger" xsi:type="object"></argument>-->
 <!--            <argument name="validator" xsi:type="object">Magento\Braintree\Gateway\Validator\ResponseValidator</argument>-->
 <!--            <argument name="errorMessageMapper" xsi:type="object">Magento\Braintree\Gateway\ErrorMapper\VirtualErrorMessageMapper</argument>-->
         </arguments>
