@@ -13,7 +13,18 @@ class Whitelabel implements OptionSourceInterface
     public function toOptionArray()
     {
         return [
-            ['value' => 'betterpayment', 'label' => __('Better Payment')],
+            [
+                'value' => 'betterpayment',
+                'label' => __('Better Payment'),
+                'test' => [
+                    'api_url' => 'https://testapi.betterpayment.de',
+                    'dash_url' => 'https://testdashboard.betterpayment.de'
+                ],
+                'production' => [
+                    'api_url' => 'https://api.betterpayment.de',
+                    'dash_url' => 'https://dashboard.betterpayment.de'
+                ]
+            ],
             ['value' => 'solvendi', 'label' => __('Solvendi')],
             ['value' => 'diagonal', 'label' => __('Diagonal-Payment')],
             ['value' => 'collectai', 'label' => __('collectAI')],
