@@ -14,6 +14,7 @@ class CreditCardHandler implements HandlerInterface
      */
     public function handle(array $handlingSubject, array $response)
     {
+        dd($response);
         /** @var PaymentDataObject $paymentDataObject */
         $paymentDataObject = $handlingSubject['payment'];
         $payment = $paymentDataObject->getPayment();

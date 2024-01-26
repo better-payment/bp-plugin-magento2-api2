@@ -4,9 +4,8 @@ namespace BetterPayment\Core\Gateway\Request;
 
 use Magento\Payment\Gateway\Data\PaymentDataObjectInterface;
 use Magento\Payment\Gateway\Request\BuilderInterface;
-use Magento\Sales\Api\Data\OrderPaymentInterface;
 
-class PaymentDataBuilder implements BuilderInterface
+class CompanyDataBuilder implements BuilderInterface
 {
     /**
      * @inheritdoc
@@ -15,14 +14,14 @@ class PaymentDataBuilder implements BuilderInterface
     {
         /** @var PaymentDataObjectInterface $paymentData */
         $paymentData = $buildSubject['payment'];
-
-        /** @var OrderPaymentInterface $payment */
-        $payment = $paymentData->getPayment();
         $order = $paymentData->getOrder();
 
+        // TODO: to be improved as in SHOPWARE plugin company detail parameters
         return [
-            'order_id' => $order->getOrderIncrementId(),
-            'transaction_id' => $payment->getLastTransId(),
+            // Company name
+            'company' => $order->getBillingAddress()->getCompany(),
+            // Starts with ISO 3166-1 alpha2 followed by 2 to 11 characters. See more details about Vat - http://ec.europa.eu/taxation_customs/vies/
+            'company_vat_id' => '',
         ];
     }
 }

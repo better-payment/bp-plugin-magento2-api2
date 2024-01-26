@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <preference for="BetterPayment\Core\Api\WebhookInterface" type="BetterPayment\Core\Api\Webhook"/>
+
     <virtualType name="CreditCardFacade" type="Magento\Payment\Model\Method\Adapter">
         <arguments>
             <argument name="code" xsi:type="const">BetterPayment\Core\Model\PaymentMethods\CreditCard::CODE</argument>
@@ -37,14 +39,14 @@
     <virtualType name="BetterPaymentCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="order" xsi:type="string">BetterPaymentOrderCommand</item>
+                <item name="authorize" xsi:type="string">BetterPaymentAuthorizeCommand</item>
             </argument>
         </arguments>
     </virtualType>
 
-    <virtualType name="BetterPaymentOrderCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+    <virtualType name="BetterPaymentAuthorizeCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
         <arguments>
-            <argument name="requestBuilder" xsi:type="object">BetterPaymentOrderRequest</argument>
+            <argument name="requestBuilder" xsi:type="object">BetterPaymentAuthorizeRequestBuilder</argument>
             <argument name="transferFactory" xsi:type="object">BetterPayment\Core\Gateway\Http\TransferFactory</argument>
             <argument name="client" xsi:type="object">BetterPayment\Core\Gateway\Http\Client\BetterPaymentClient</argument>
             <argument name="handler" xsi:type="object">BetterPayment\Core\Gateway\Response\CreditCardHandler</argument>
@@ -55,19 +57,16 @@
         </arguments>
     </virtualType>
 
-    <virtualType name="BetterPaymentOrderRequest" type="Magento\Payment\Gateway\Request\BuilderComposite">
+    <virtualType name="BetterPaymentAuthorizeRequestBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
         <arguments>
             <argument name="builders" xsi:type="array">
-                <item name="payment" xsi:type="string">BetterPayment\Core\Gateway\Request\PaymentDataBuilder</item>
-<!--                <item name="customer" xsi:type="string">Magento\Braintree\Gateway\Request\CustomerDataBuilder</item>-->
-<!--                <item name="channel" xsi:type="string">Magento\Braintree\Gateway\Request\ChannelDataBuilder</item>-->
-<!--                <item name="address" xsi:type="string">Magento\Braintree\Gateway\Request\AddressDataBuilder</item>-->
-<!--                <item name="vault" xsi:type="string">Magento\Braintree\Gateway\Request\VaultDataBuilder</item>-->
-<!--                <item name="3dsecure" xsi:type="string">Magento\Braintree\Gateway\Request\ThreeDSecureDataBuilder</item>-->
-<!--                <item name="device_data" xsi:type="string">Magento\Braintree\Gateway\Request\KountPaymentDataBuilder</item>-->
-<!--                <item name="dynamic_descriptor" xsi:type="string">Magento\Braintree\Gateway\Request\DescriptorDataBuilder</item>-->
-<!--                <item name="store" xsi:type="string">Magento\Braintree\Gateway\Request\StoreConfigBuilder</item>-->
-<!--                <item name="merchant_account" xsi:type="string">Magento\Braintree\Gateway\Request\MerchantAccountDataBuilder</item>-->
+                <item name="common" xsi:type="string">BetterPayment\Core\Gateway\Request\CommonDataBuilder</item>
+                <item name="redirect_url" xsi:type="string">BetterPayment\Core\Gateway\Request\RedirectUrlDataBuilder</item>
+                <item name="billing_address" xsi:type="string">BetterPayment\Core\Gateway\Request\BillingAddressDataBuilder</item>
+                <item name="shipping_address" xsi:type="string">BetterPayment\Core\Gateway\Request\ShippingAddressDataBuilder</item>
+                <item name="risk_check" xsi:type="string">BetterPayment\Core\Gateway\Request\RiskCheckDataBuilder</item>
+                <item name="company" xsi:type="string">BetterPayment\Core\Gateway\Request\CompanyDataBuilder</item>
+<!--                <item name="specific" xsi:type="string">BetterPayment\Core\Gateway\Request\SpecificDataBuilder</item>-->
             </argument>
         </arguments>
     </virtualType>
