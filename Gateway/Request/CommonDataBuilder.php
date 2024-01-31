@@ -40,7 +40,6 @@ class CommonDataBuilder implements BuilderInterface
 
         return [
             // payment method shortcode
-            // TODO: change it to actual shortcode
             'payment_type' => PaymentMethod::SHORTCODE[$payment->getMethod()],
             // always enabled
             'risk_check_approval' => '1',

@@ -33,9 +33,9 @@ class BetterPaymentClient implements ClientInterface
 
         try {
             $response = $this->client->send($request);
-            $responseBody = json_decode($response->getBody());
-            if ($responseBody->error_code == 0) {
-                return [$responseBody];
+            $responseBody = json_decode($response->getBody(), true);
+            if ($responseBody['error_code'] == 0) {
+                return $responseBody;
             }
             else {
                 throw new ClientException(__('Better Payment Client ERROR: ' . $response->getBody()));

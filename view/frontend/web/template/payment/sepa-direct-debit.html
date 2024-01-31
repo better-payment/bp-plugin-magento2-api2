@@ -16,7 +16,10 @@
             <!--/ko-->
         </div>
 
-        <form class="form" action="#" method="post" data-bind="attr: {id: getCode() + '_payment-form'}">
+        <form class="form" action="#" method="post"
+              data-bind="attr: {
+                id: getCode() + '_payment-form'
+              }">
             <!-- ko template: 'BetterPayment_Core/payment/sepa-direct-debit-fields' --><!-- /ko -->
         </form>
 
