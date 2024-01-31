@@ -12,12 +12,22 @@
                 <debug>1</debug>
                 <active>1</active>
                 <title>Credit Card | Better Payment</title>
-                <model>CreditCardFacade</model>
+                <model>BetterPaymentCreditCardFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
                 <can_authorize>1</can_authorize>
                 <payment_action>authorize</payment_action>
             </betterpayment_credit_card>
+            <betterpayment_sepa_direct_debit>
+                <debug>1</debug>
+                <active>1</active>
+                <title>SEPA Direct Debit | Better Payment</title>
+                <model>BetterPaymentSepaDirectDebitFacade</model>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <can_order>1</can_order>
+                <payment_action>order</payment_action>
+            </betterpayment_sepa_direct_debit>
         </payment>
     </default>
 </config>

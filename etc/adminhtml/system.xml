@@ -55,6 +55,7 @@
 
         <!--PAYMENT METHODS CONFIGURATION-->
         <section id="payment">
+            <!-- CREDIT CARD -->
             <group id="betterpayment_credit_card" translate="label" showInDefault="1">
                 <label>Credit Card (Better Payment)</label>
                 <field id="active" translate="label" type="select" showInDefault="1">
@@ -63,9 +64,46 @@
                 </field>
                 <field id="title" translate="label" type="text" showInDefault="1">
                     <label>Title</label>
-<!--                    <comment></comment>-->
                 </field>
             </group>
+            <!-- END CREDIT CARD -->
+
+            <!-- START SEPA DIRECT DEBIT -->
+            <group id="betterpayment_sepa_direct_debit" translate="label" showInDefault="1">
+                <label>SEPA Direct Debit (Better Payment)</label>
+                <field id="active" translate="label" type="select" showInDefault="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" showInDefault="1">
+                    <label>Title</label>
+                </field>
+                <field id="sepaDirectDebitCreditorID" translate="label" type="text" showInDefault="1">
+                    <label>Creditor ID</label>
+                    <comment>You need to provide a valid Creditor ID, to be shown in mandate agreement on the checkout page.</comment>
+                </field>
+                <field id="sepaDirectDebitCompanyName" translate="label" type="text" showInDefault="1">
+                    <label>Company name</label>
+                    <comment>You need to provide Company Name, to be shown in mandate reference agreement on the checkout page.</comment>
+                </field>
+                <field id="sepaDirectDebitCollectDateOfBirth" translate="label" type="select" showInDefault="1">
+                    <label>Collect date of birth</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If you have configured risk checks with the payment provider, it may require date of birth from your customers.</comment>
+                </field>
+                <field id="sepaDirectDebitCollectGender" translate="label" type="select" showInDefault="1">
+                    <label>Collect gender information</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If you have configured risk checks with the payment provider, it may require gender from your customers.</comment>
+                </field>
+                <field id="sepaDirectDebitRiskCheckAgreement" translate="label" type="select" showInDefault="1">
+                    <label>Require customers to agree to risk check processing</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If you turn this flag on, we will require the customer to agree to the risk check processing in the checkout page.
+                        Without agreement, payments will not go through. You can turn this field off, in case you provide it as part of your terms and conditions.</comment>
+                </field>
+            </group>
+            <!-- END SEPA DIRECT DEBIT -->
         </section>
     </system>
 </config>

@@ -1,44 +1,46 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <preference for="BetterPayment\Core\Api\WebhookInterface" type="BetterPayment\Core\Api\Webhook"/>
-
-    <virtualType name="CreditCardFacade" type="Magento\Payment\Model\Method\Adapter">
+    <!-- BetterPaymentCreditCardFacade START -->
+    <virtualType name="BetterPaymentCreditCardFacade" type="Magento\Payment\Model\Method\Adapter">
         <arguments>
-            <argument name="code" xsi:type="const">BetterPayment\Core\Model\PaymentMethods\CreditCard::CODE</argument>
+            <argument name="code" xsi:type="const">BetterPayment\Core\Util\PaymentMethod::CREDIT_CARD</argument>
             <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form\Cc</argument>
             <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\ConfigurableInfo</argument>
-            <argument name="valueHandlerPool" xsi:type="object">BetterPaymentValueHandlerPool</argument>
+            <argument name="valueHandlerPool" xsi:type="object">BetterPaymentCreditCardValueHandlerPool</argument>
             <argument name="commandPool" xsi:type="object">BetterPaymentCommandPool</argument>
 <!--            <argument name="validatorPool" xsi:type="object">CreditCardValidatorPool</argument>-->
         </arguments>
     </virtualType>
+    <!-- BetterPaymentCreditCardFacade END -->
 
-    <!--  BetterPaymentValueHandlerPool START  -->
-    <virtualType name="BetterPaymentValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+    <!-- BetterPaymentCreditCardValueHandlerPool START -->
+    <virtualType name="BetterPaymentCreditCardValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
         <arguments>
             <argument name="handlers" xsi:type="array">
-                <item name="default" xsi:type="string">BetterPaymentConfigValueHandler</item>
+                <item name="default" xsi:type="string">BetterPaymentCreditCardConfigValueHandler</item>
             </argument>
         </arguments>
     </virtualType>
 
-    <virtualType name="BetterPaymentConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+    <virtualType name="BetterPaymentCreditCardConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
         <arguments>
-            <argument name="configInterface" xsi:type="object">BetterPaymentConfig</argument>
+            <argument name="configInterface" xsi:type="object">BetterPaymentCreditCardConfig</argument>
         </arguments>
     </virtualType>
 
-    <virtualType name="BetterPaymentConfig" type="Magento\Payment\Gateway\Config\Config">
+    <virtualType name="BetterPaymentCreditCardConfig" type="Magento\Payment\Gateway\Config\Config">
         <arguments>
-            <argument name="methodCode" xsi:type="const">BetterPayment\Core\Model\PaymentMethods\CreditCard::CODE</argument>
+            <argument name="methodCode" xsi:type="const">BetterPayment\Core\Util\PaymentMethod::CREDIT_CARD</argument>
         </arguments>
     </virtualType>
-    <!--  BetterPaymentValueHandlerPool END  -->
+    <!-- BetterPaymentCreditCardValueHandlerPool END -->
 
-    <!--  BetterPaymentCommandPool START  -->
+    <!-- BetterPaymentCommandPool START -->
     <virtualType name="BetterPaymentCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
         <arguments>
             <argument name="commands" xsi:type="array">
+                <item name="order" xsi:type="string">BetterPaymentAuthorizeCommand</item>
                 <item name="authorize" xsi:type="string">BetterPaymentAuthorizeCommand</item>
             </argument>
         </arguments>
@@ -66,9 +68,45 @@
                 <item name="shipping_address" xsi:type="string">BetterPayment\Core\Gateway\Request\ShippingAddressDataBuilder</item>
                 <item name="risk_check" xsi:type="string">BetterPayment\Core\Gateway\Request\RiskCheckDataBuilder</item>
                 <item name="company" xsi:type="string">BetterPayment\Core\Gateway\Request\CompanyDataBuilder</item>
-<!--                <item name="specific" xsi:type="string">BetterPayment\Core\Gateway\Request\SpecificDataBuilder</item>-->
+                <item name="additional" xsi:type="string">BetterPayment\Core\Gateway\Request\AdditionalDataBuilder</item>
             </argument>
         </arguments>
     </virtualType>
-    <!--  BetterPaymentCommandPool END  -->
+    <!-- BetterPaymentCommandPool END -->
+
+
+    <!-- BetterPaymentSepaDirectDebitFacade START -->
+    <virtualType name="BetterPaymentSepaDirectDebitFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">BetterPayment\Core\Util\PaymentMethod::SEPA_DIRECT_DEBIT</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form\Cc</argument>
+            <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\ConfigurableInfo</argument>
+            <argument name="valueHandlerPool" xsi:type="object">BetterPaymentSepaDirectDebitValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">BetterPaymentCommandPool</argument>
+            <!--            <argument name="validatorPool" xsi:type="object">CreditCardValidatorPool</argument>-->
+        </arguments>
+    </virtualType>
+    <!-- BetterPaymentSepaDirectDebitFacade END -->
+
+    <!-- BetterPaymentSepaDirectDebitValueHandlerPool START -->
+    <virtualType name="BetterPaymentSepaDirectDebitValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">BetterPaymentSepaDirectDebitConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="BetterPaymentSepaDirectDebitConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">BetterPaymentSepaDirectDebitConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="BetterPaymentSepaDirectDebitConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">BetterPayment\Core\Util\PaymentMethod::SEPA_DIRECT_DEBIT</argument>
+        </arguments>
+    </virtualType>
+    <!-- BetterPaymentSepaDirectDebitValueHandlerPool END -->
 </config>
