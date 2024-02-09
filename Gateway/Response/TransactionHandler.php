@@ -2,12 +2,15 @@
 
 namespace BetterPayment\Core\Gateway\Response;
 
+use BetterPayment\Core\Model\AdditionalConfigVars;
+use Magento\Checkout\Model\ConfigProviderInterface;
 use Magento\Payment\Gateway\Data\PaymentDataObject;
 use Magento\Payment\Gateway\Response\HandlerInterface;
+use Magento\Persistent\Model\CheckoutConfigProvider;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\Data\OrderPaymentInterface;
 
-class CreditCardHandler implements HandlerInterface
+class TransactionHandler implements HandlerInterface
 {
 
     /**
@@ -23,6 +26,10 @@ class CreditCardHandler implements HandlerInterface
         // Make sure the transaction is marked as pending so we don't get the wrong order state.
         $payment->setIsTransactionPending(true);
         $payment->setTransactionId($response['transaction_id']);
+
+        if (isset($response['action_data']['url'])) {
+            $payment->setAdditionalInformation('redirect_url', $response['action_data']['url']);
+        }
 
         /** @var OrderInterface $order */
         $order = $payment->getOrder();

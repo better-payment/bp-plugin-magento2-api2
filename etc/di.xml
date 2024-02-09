@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
-    <preference for="BetterPayment\Core\Api\WebhookInterface" type="BetterPayment\Core\Api\Webhook"/>
     <!-- BetterPaymentCreditCardFacade START -->
     <virtualType name="BetterPaymentCreditCardFacade" type="Magento\Payment\Model\Method\Adapter">
         <arguments>
@@ -40,18 +39,17 @@
     <virtualType name="BetterPaymentCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="order" xsi:type="string">BetterPaymentAuthorizeCommand</item>
-                <item name="authorize" xsi:type="string">BetterPaymentAuthorizeCommand</item>
+                <item name="order" xsi:type="string">BetterPaymentOrderCommand</item>
             </argument>
         </arguments>
     </virtualType>
 
-    <virtualType name="BetterPaymentAuthorizeCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+    <virtualType name="BetterPaymentOrderCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
         <arguments>
-            <argument name="requestBuilder" xsi:type="object">BetterPaymentAuthorizeRequestBuilder</argument>
+            <argument name="requestBuilder" xsi:type="object">BetterPaymentOrderRequestBuilder</argument>
             <argument name="transferFactory" xsi:type="object">BetterPayment\Core\Gateway\Http\TransferFactory</argument>
             <argument name="client" xsi:type="object">BetterPayment\Core\Gateway\Http\Client\BetterPaymentClient</argument>
-            <argument name="handler" xsi:type="object">BetterPayment\Core\Gateway\Response\CreditCardHandler</argument>
+            <argument name="handler" xsi:type="object">BetterPayment\Core\Gateway\Response\TransactionHandler</argument>
 
 <!--            <argument name="logger" xsi:type="object"></argument>-->
 <!--            <argument name="validator" xsi:type="object">Magento\Braintree\Gateway\Validator\ResponseValidator</argument>-->
@@ -59,7 +57,7 @@
         </arguments>
     </virtualType>
 
-    <virtualType name="BetterPaymentAuthorizeRequestBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
+    <virtualType name="BetterPaymentOrderRequestBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
         <arguments>
             <argument name="builders" xsi:type="array">
                 <item name="common" xsi:type="string">BetterPayment\Core\Gateway\Request\CommonDataBuilder</item>

@@ -1,14 +1,30 @@
 define(
     [
-        'Magento_Checkout/js/view/payment/default'
+        'Magento_Checkout/js/view/payment/default',
+        'Magento_Checkout/js/model/quote',
+        'Magento_Customer/js/model/customer',
+        'Magento_Checkout/js/model/full-screen-loader',
+        'mage/storage',
+        'Magento_Checkout/js/model/url-builder',
     ],
-    function (Component) {
+    function (Component, quote, customer, fullScreenLoader, storage, urlBuilder) {
         'use strict';
         return Component.extend({
             defaults: {
-                template: 'BetterPayment_Core/payment/credit-card'
+                template: 'BetterPayment_Core/payment/credit-card',
+                redirectAfterPlaceOrder: false,
             },
-            // add required logic here
+
+            afterPlaceOrder: function () {
+                fullScreenLoader.startLoader();
+
+                var serviceUrl = urlBuilder.createUrl('/betterpayment/transaction', {});
+                storage.get(
+                    serviceUrl, false
+                ).done(function(response){
+                    window.location.replace(response)
+                });
+            }
         });
     }
 );
