@@ -4,30 +4,126 @@
         <betterpayment>
             <base_configuration>
                 <environment>test</environment>
-                <whitelabel>betterpayment</whitelabel>
             </base_configuration>
+
+            <test_environment_credentials>
+                <testApiUrl>https://testapi.betterpayment.de</testApiUrl>
+            </test_environment_credentials>
+
+            <production_environment_credentials>
+                <productionApiUrl>https://api.betterpayment.de</productionApiUrl>
+            </production_environment_credentials>
         </betterpayment>
         <payment>
             <betterpayment_credit_card>
-                <debug>1</debug>
-                <active>1</active>
+                <active>0</active>
                 <title>Credit Card | Better Payment</title>
+                <debug>1</debug>
                 <model>BetterPaymentCreditCardFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
                 <can_order>1</can_order>
                 <payment_action>order</payment_action>
             </betterpayment_credit_card>
-            <betterpayment_sepa_direct_debit>
+
+            <betterpayment_giropay>
+                <active>0</active>
+                <title>Giropay | Better Payment</title>
                 <debug>1</debug>
-                <active>1</active>
+                <model>BetterPaymentGiropayFacade</model>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <can_order>1</can_order>
+                <payment_action>order</payment_action>
+            </betterpayment_giropay>
+
+            <betterpayment_paydirekt>
+                <active>0</active>
+                <title>Paydirekt | Better Payment</title>
+                <debug>1</debug>
+                <model>BetterPaymentPaydirektFacade</model>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <can_order>1</can_order>
+                <payment_action>order</payment_action>
+            </betterpayment_paydirekt>
+
+            <betterpayment_sofort>
+                <active>0</active>
+                <title>Sofort | Better Payment</title>
+                <debug>1</debug>
+                <model>BetterPaymentSofortFacade</model>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <can_order>1</can_order>
+                <payment_action>order</payment_action>
+            </betterpayment_sofort>
+
+            <betterpayment_request_to_pay>
+                <active>0</active>
+                <title>Request To Pay | Better Payment</title>
+                <debug>1</debug>
+                <model>BetterPaymentRequestToPayFacade</model>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <can_order>1</can_order>
+                <payment_action>order</payment_action>
+            </betterpayment_request_to_pay>
+
+            <betterpayment_paypal>
+                <active>0</active>
+                <title>PayPal | Better Payment</title>
+                <debug>1</debug>
+                <model>BetterPaymentPayPalFacade</model>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <can_order>1</can_order>
+                <payment_action>order</payment_action>
+            </betterpayment_paypal>
+
+            <betterpayment_sepa_direct_debit>
+                <active>0</active>
                 <title>SEPA Direct Debit | Better Payment</title>
+                <debug>1</debug>
                 <model>BetterPaymentSepaDirectDebitFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
                 <can_order>1</can_order>
                 <payment_action>order</payment_action>
             </betterpayment_sepa_direct_debit>
+
+            <betterpayment_sepa_direct_debit_b2b>
+                <active>0</active>
+                <title>SEPA Direct Debit B2B | Better Payment</title>
+                <debug>1</debug>
+                <model>BetterPaymentSepaDirectDebitB2BFacade</model>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <can_order>1</can_order>
+                <payment_action>order</payment_action>
+            </betterpayment_sepa_direct_debit_b2b>
+
+            <betterpayment_invoice>
+                <active>0</active>
+                <title>Invoice | Better Payment</title>
+                <debug>1</debug>
+                <model>BetterPaymentInvoiceFacade</model>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <can_order>1</can_order>
+                <payment_action>order</payment_action>
+            </betterpayment_invoice>
+
+            <betterpayment_invoice_b2b>
+                <active>0</active>
+                <title>Invoice B2B | Better Payment</title>
+                <debug>1</debug>
+                <model>BetterPaymentInvoiceB2BFacade</model>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <can_order>1</can_order>
+                <payment_action>order</payment_action>
+            </betterpayment_invoice_b2b>
         </payment>
     </default>
 </config>
