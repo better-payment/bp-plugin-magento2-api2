@@ -11,14 +11,14 @@ define(
         'use strict';
         return Component.extend({
             defaults: {
-                template: 'BetterPayment_Core/payment/credit-card',
+                template: 'BetterPayment_Core/payment/default',
                 redirectAfterPlaceOrder: false,
             },
 
             afterPlaceOrder: function () {
                 fullScreenLoader.startLoader();
 
-                var serviceUrl = urlBuilder.createUrl('/betterpayment/transaction', {});
+                let serviceUrl = urlBuilder.createUrl('/betterpayment/transaction', {});
                 storage.get(
                     serviceUrl, false
                 ).done(function(response){
