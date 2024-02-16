@@ -2,7 +2,6 @@
 
 namespace BetterPayment\Core\Util;
 
-use BetterPayment\Core\Model\Config\Source\Whitelabel;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
@@ -11,21 +10,20 @@ class ConfigReader
     public const STORE_NAME = 'general/store_information/name';
 
     public const ENVIRONMENT = 'betterpayment/base_configuration/environment';
-    public const WHITELABEL = 'betterpayment/base_configuration/whitelabel';
+    public const TEST_API_URL = 'betterpayment/test_environment_credentials/testApiUrl';
     public const TEST_API_KEY = 'betterpayment/test_environment_credentials/testApiKey';
     public const TEST_OUTGOING_KEY = 'betterpayment/test_environment_credentials/testOutgoingKey';
     public const TEST_INCOMING_KEY = 'betterpayment/test_environment_credentials/testIncomingKey';
+    public const PRODUCTION_API_URL = 'betterpayment/production_environment_credentials/productionApiUrl';
     public const PRODUCTION_API_KEY = 'betterpayment/production_environment_credentials/productionApiKey';
     public const PRODUCTION_OUTGOING_KEY = 'betterpayment/production_environment_credentials/productionOutgoingKey';
     public const PRODUCTION_INCOMING_KEY = 'betterpayment/production_environment_credentials/productionIncomingKey';
 
     private ScopeConfigInterface $scopeConfig;
-    private Whitelabel $whitelabel;
 
-    public function __construct(ScopeConfigInterface $scopeConfig, Whitelabel $whitelabel)
+    public function __construct(ScopeConfigInterface $scopeConfig)
     {
         $this->scopeConfig = $scopeConfig;
-        $this->whitelabel = $whitelabel;
     }
 
     public function get(string $path)
@@ -33,47 +31,42 @@ class ConfigReader
         return $this->scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE);
     }
 
-    public function getWebhookUrl() {
+    public function getWebhookUrl(): string
+    {
         // TODO: fetch dynamically
         return 'https://localhost/rest/V1/betterpayment/webhook';
     }
 
-    public function getModuleVersion() {
+    public function getModuleVersion(): string
+    {
         // TODO: fetch dynamically from composer.json (most probably)
         return '1.0.0';
     }
 
-    public function getApiUrl() {
-        $whitelabel = $this->get(self::WHITELABEL);
-        $environment = $this->get(self::ENVIRONMENT);
+    public function getApiUrl(): string
+    {
+        $apiUrl = $this->get(self::ENVIRONMENT) == 'test'
+            ? $this->get(self::TEST_API_URL)
+            : $this->get(self::PRODUCTION_API_URL);
 
-        $whitelabelOptions = $this->whitelabel->toOptionArray();
-
-        foreach ($whitelabelOptions as $whitelabelOption) {
-            if ($whitelabelOption['value'] == $whitelabel) {
-                return $whitelabelOption[$environment]['api_url'];
-            }
-        }
-
-        // TODO: return fallback url such as null or empty string
-        return null;
+        return rtrim($apiUrl, '/');
     }
 
-    public function getApiKey()
+    public function getApiKey(): string
     {
         return $this->get(self::ENVIRONMENT) == 'test'
             ? $this->get(self::TEST_API_KEY)
             : $this->get(self::PRODUCTION_API_KEY);
     }
 
-    public function getOutgoingKey()
+    public function getOutgoingKey(): string
     {
         return $this->get(self::ENVIRONMENT) == 'test'
             ? $this->get(self::TEST_OUTGOING_KEY)
             : $this->get(self::PRODUCTION_OUTGOING_KEY);
     }
 
-    public function getIncomingKey()
+    public function getIncomingKey(): string
     {
         return $this->get(self::ENVIRONMENT) == 'test'
             ? $this->get(self::TEST_INCOMING_KEY)
