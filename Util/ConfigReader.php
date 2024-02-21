@@ -24,6 +24,24 @@ class ConfigReader
     public const SEPA_DIRECT_DEBIT_COLLECT_GENDER = 'payment/betterpayment_sepa_direct_debit/sepaDirectDebitCollectGender';
     public const SEPA_DIRECT_DEBIT_RISK_CHECK_AGREEMENT = 'payment/betterpayment_sepa_direct_debit/sepaDirectDebitRiskCheckAgreement';
 
+    public const SEPA_DIRECT_DEBIT_B2B_CREDITOR_ID = 'payment/betterpayment_sepa_direct_debit_b2b/sepaDirectDebitB2BCreditorID';
+    public const SEPA_DIRECT_DEBIT_B2B_COMPANY_NAME = 'payment/betterpayment_sepa_direct_debit_b2b/sepaDirectDebitB2BCompanyName';
+    public const SEPA_DIRECT_DEBIT_B2B_RISK_CHECK_AGREEMENT = 'payment/betterpayment_sepa_direct_debit_b2b/sepaDirectDebitB2BRiskCheckAgreement';
+
+    public const INVOICE_DISPLAY_INSTRUCTION = 'payment/betterpayment_invoice/invoiceDisplayInstruction';
+    public const INVOICE_IBAN = 'payment/betterpayment_invoice/invoiceIBAN';
+    public const INVOICE_BIC = 'payment/betterpayment_invoice/invoiceBIC';
+    public const INVOICE_COLLECT_DATE_OF_BIRTH = 'payment/betterpayment_invoice/invoiceCollectDateOfBirth';
+    public const INVOICE_COLLECT_GENDER = 'payment/betterpayment_invoice/invoiceCollectGender';
+    public const INVOICE_RISK_CHECK_AGREEMENT = 'payment/betterpayment_invoice/invoiceRiskCheckAgreement';
+    public const INVOICE_AUTOMATICALLY_CAPTURE_ON_ORDER_INVOICE_DOCUMENT_SENT = 'payment/betterpayment_invoice/invoiceAutomaticallyCaptureOnOrderInvoiceDocumentSent';
+
+    public const INVOICE_B2B_DISPLAY_INSTRUCTION = 'payment/betterpayment_invoice/invoiceB2BDisplayInstruction';
+    public const INVOICE_B2B_IBAN = 'payment/betterpayment_invoice/invoiceB2BIBAN';
+    public const INVOICE_B2B_BIC = 'payment/betterpayment_invoice/invoiceB2BBIC';
+    public const INVOICE_B2B_RISK_CHECK_AGREEMENT = 'payment/betterpayment_invoice/invoiceB2BRiskCheckAgreement';
+    public const INVOICE_B2B_AUTOMATICALLY_CAPTURE_ON_ORDER_INVOICE_DOCUMENT_SENT = 'payment/betterpayment_invoice/invoiceB2BAutomaticallyCaptureOnOrderInvoiceDocumentSent';
+
     private ScopeConfigInterface $scopeConfig;
 
     public function __construct(ScopeConfigInterface $scopeConfig)

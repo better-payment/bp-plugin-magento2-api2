@@ -3,7 +3,6 @@
 namespace BetterPayment\Core\Model\Ui;
 
 use BetterPayment\Core\Util\ConfigReader;
-use BetterPayment\Core\Util\PaymentMethod;
 use Magento\Checkout\Model\ConfigProviderInterface;
 
 class ConfigProvider implements ConfigProviderInterface
