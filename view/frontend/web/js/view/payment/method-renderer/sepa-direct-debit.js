@@ -9,15 +9,11 @@ define(
         return Component.extend({
             defaults: {
                 template: 'BetterPayment_Core/payment/sepa-direct-debit',
-                betterpayment_account_holder: '',
-                betterpayment_sepa_mandate: ''
-            },
-
-            initialize: function () {
-                this._super();
-
-                this.betterpayment_account_holder = customer.customerData.firstname + ' ' + customer.customerData.lastname;
-                this.betterpayment_sepa_mandate = this.generateUUID();
+                betterpayment_account_holder: customer.customerData.firstname + ' ' + customer.customerData.lastname,
+                betterpayment_sepa_mandate: crypto.randomUUID(),
+                creditor_id: window.checkoutConfig.payment.sepaDirectDebitCreditorID,
+                company_name: window.checkoutConfig.payment.sepaDirectDebitCompanyName,
+                risk_check_agreement: window.checkoutConfig.payment.sepaDirectDebitRiskCheckAgreement,
             },
 
             getData: function () {
@@ -31,14 +27,6 @@ define(
                     }
                 };
             },
-
-            generateUUID: function () {
-                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                    var r = Math.random() * 16 | 0,
-                        v = c === 'x' ? r : (r & 0x3 | 0x8);
-                    return v.toString(16);
-                });
-            }
         });
     }
 );

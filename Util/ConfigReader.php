@@ -18,6 +18,11 @@ class ConfigReader
     public const PRODUCTION_API_KEY = 'betterpayment/production_environment_credentials/productionApiKey';
     public const PRODUCTION_OUTGOING_KEY = 'betterpayment/production_environment_credentials/productionOutgoingKey';
     public const PRODUCTION_INCOMING_KEY = 'betterpayment/production_environment_credentials/productionIncomingKey';
+    public const SEPA_DIRECT_DEBIT_CREDITOR_ID = 'payment/betterpayment_sepa_direct_debit/sepaDirectDebitCreditorID';
+    public const SEPA_DIRECT_DEBIT_COMPANY_NAME = 'payment/betterpayment_sepa_direct_debit/sepaDirectDebitCompanyName';
+    public const SEPA_DIRECT_DEBIT_COLLECT_DATE_OF_BIRTH = 'payment/betterpayment_sepa_direct_debit/sepaDirectDebitCollectDateOfBirth';
+    public const SEPA_DIRECT_DEBIT_COLLECT_GENDER = 'payment/betterpayment_sepa_direct_debit/sepaDirectDebitCollectGender';
+    public const SEPA_DIRECT_DEBIT_RISK_CHECK_AGREEMENT = 'payment/betterpayment_sepa_direct_debit/sepaDirectDebitRiskCheckAgreement';
 
     private ScopeConfigInterface $scopeConfig;
 
@@ -29,6 +34,13 @@ class ConfigReader
     public function get(string $path)
     {
         return $this->scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE);
+    }
+
+    // Get final part of config key which is defined in system.xml as field id
+    public function getConfigId(string $configPath): string
+    {
+        $parts = explode("/", $configPath);
+        return end($parts);
     }
 
     public function getWebhookUrl(): string
