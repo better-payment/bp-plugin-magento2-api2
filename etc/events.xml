@@ -2,4 +2,7 @@
     <event name="payment_method_assign_data_betterpayment_sepa_direct_debit">
         <observer name="betterpayment_gateway_data_assign" instance="BetterPayment\Core\Observer\PaymentMethodDataAssignObserver" />
     </event>
+    <event name="payment_method_assign_data_betterpayment_sepa_direct_debit_b2b">
+        <observer name="betterpayment_gateway_data_assign" instance="BetterPayment\Core\Observer\PaymentMethodDataAssignObserver" />
+    </event>
 </config>

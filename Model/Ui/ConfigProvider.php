@@ -24,6 +24,9 @@ class ConfigProvider implements ConfigProviderInterface
                 $this->configReader->getConfigId(ConfigReader::SEPA_DIRECT_DEBIT_CREDITOR_ID) => $this->configReader->get(ConfigReader::SEPA_DIRECT_DEBIT_CREDITOR_ID),
                 $this->configReader->getConfigId(ConfigReader::SEPA_DIRECT_DEBIT_COMPANY_NAME) => $this->configReader->get(ConfigReader::SEPA_DIRECT_DEBIT_COMPANY_NAME),
                 $this->configReader->getConfigId(ConfigReader::SEPA_DIRECT_DEBIT_RISK_CHECK_AGREEMENT) => $this->configReader->get(ConfigReader::SEPA_DIRECT_DEBIT_RISK_CHECK_AGREEMENT),
+                $this->configReader->getConfigId(ConfigReader::SEPA_DIRECT_DEBIT_B2B_CREDITOR_ID) => $this->configReader->get(ConfigReader::SEPA_DIRECT_DEBIT_B2B_CREDITOR_ID),
+                $this->configReader->getConfigId(ConfigReader::SEPA_DIRECT_DEBIT_B2B_COMPANY_NAME) => $this->configReader->get(ConfigReader::SEPA_DIRECT_DEBIT_B2B_COMPANY_NAME),
+                $this->configReader->getConfigId(ConfigReader::SEPA_DIRECT_DEBIT_B2B_RISK_CHECK_AGREEMENT) => $this->configReader->get(ConfigReader::SEPA_DIRECT_DEBIT_B2B_RISK_CHECK_AGREEMENT),
             ]
         ];
     }

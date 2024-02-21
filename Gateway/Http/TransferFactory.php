@@ -29,8 +29,6 @@ class TransferFactory implements TransferFactoryInterface
                 'Authorization' => 'Basic ' . base64_encode($this->configReader->getApiKey() . ':' . $this->configReader->getOutgoingKey()),
             ])
             ->setBody(json_encode($request))
-//            ->setAuthUsername($this->configReader->getApiKey())
-//            ->setAuthPassword($this->configReader->getOutgoingKey())
             ->setUri($this->configReader->getApiUrl() . '/rest/payment')
             ->build();
     }

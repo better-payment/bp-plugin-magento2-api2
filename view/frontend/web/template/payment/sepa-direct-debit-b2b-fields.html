@@ -1,0 +1,39 @@
+<!--TODO: make required fields functional-->
+<form class="form" action="#" method="post" data-bind="attr: {id: getCode() + '_payment-form'}" data-mage-init='{"validation": {}}'>
+    <fieldset class="fieldset">
+        <div class="field required">
+            <label for="betterpayment_iban_b2b" class="label">IBAN</label>
+            <input type="text" id="betterpayment_iban_b2b" required="true">
+            <small>Please, enter your IBAN.</small>
+        </div>
+        <div class="field">
+            <label for="betterpayment_bic_b2b" class="label">BIC</label>
+            <input type="text" id="betterpayment_bic_b2b">
+            <small>Please, enter your BIC. (optional)</small>
+        </div>
+        <div>
+            <p><b>Account Holder: </b><span data-bind="text: betterpayment_account_holder"></span></p>
+            <p><b>Creditor ID: </b><span data-bind="text: creditor_id"></span></p>
+            <p><b>Company name: </b><span data-bind="text: company_name"></span></p>
+            <p><b>Mandate reference: </b><span data-bind="text: betterpayment_sepa_mandate"></span></p>
+            <p>
+                By signing this mandate form, you authorise (A) <span data-bind="text: company_name"></span> to send
+                instructions to your bank to debit your account and (B) your bank to debit your account in accordance with
+                the instructions from <span data-bind="text: company_name"></span>. As part of your rights, you are entitled
+                to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be
+                claimed within eight weeks starting from the date on which your account was debited.
+            </p>
+        </div>
+        <div class="field required">
+            <input type="checkbox" id="mandateAgreement" required>
+            <label for="mandateAgreement" class="label">I agree to the following mandate</label>
+        </div>
+
+        <!-- ko if: risk_check_agreement == 1 -->
+        <div class="field required">
+            <input type="checkbox" id="riskCheckAgreement" required>
+            <label for="riskCheckAgreement" class="label">I agree that my data may be forwarded to risk check processing services.</label>
+        </div>
+        <!-- /ko -->
+    </fieldset>
+</form>

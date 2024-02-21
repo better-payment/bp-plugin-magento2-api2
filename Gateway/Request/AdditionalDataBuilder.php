@@ -22,7 +22,7 @@ class AdditionalDataBuilder implements BuilderInterface
         $payment = $paymentData->getPayment();
 
         return match ($payment->getMethod()) {
-            PaymentMethod::SEPA_DIRECT_DEBIT => [
+            PaymentMethod::SEPA_DIRECT_DEBIT, PaymentMethod::SEPA_DIRECT_DEBIT_B2B => [
                 'account_holder' => $payment->getAdditionalInformation(PaymentMethodDataAssignObserver::ACCOUNT_HOLDER),
                 'iban' => $payment->getAdditionalInformation(PaymentMethodDataAssignObserver::IBAN),
                 'bic' => $payment->getAdditionalInformation(PaymentMethodDataAssignObserver::BIC),
