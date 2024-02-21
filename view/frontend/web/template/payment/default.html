@@ -15,6 +15,11 @@
             <!-- ko template: getTemplate() --><!-- /ko -->
             <!--/ko-->
         </div>
+
+        <!-- ko if: getCode() === 'betterpayment_sepa_direct_debit' -->
+            <!-- ko template: 'BetterPayment_Core/payment/sepa-direct-debit-fields' --><!-- /ko -->
+        <!-- /ko -->
+
         <div class="checkout-agreements-block">
             <!-- ko foreach: $parent.getRegion('before-place-order') -->
             <!-- ko template: getTemplate() --><!-- /ko -->

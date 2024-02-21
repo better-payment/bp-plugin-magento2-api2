@@ -8,7 +8,7 @@ define(
         'use strict';
         return Component.extend({
             defaults: {
-                template: 'BetterPayment_Core/payment/sepa-direct-debit',
+                template: 'BetterPayment_Core/payment/default',
                 betterpayment_account_holder: customer.customerData.firstname + ' ' + customer.customerData.lastname,
                 betterpayment_sepa_mandate: crypto.randomUUID(),
                 creditor_id: window.checkoutConfig.payment.sepaDirectDebitCreditorID,
