@@ -22,6 +22,9 @@
         <!-- ko if: getCode() === 'betterpayment_sepa_direct_debit_b2b' -->
             <!-- ko template: 'BetterPayment_Core/payment/sepa-direct-debit-b2b-fields' --><!-- /ko -->
         <!-- /ko -->
+        <!-- ko if: getCode() === 'betterpayment_invoice' -->
+            <!-- ko template: 'BetterPayment_Core/payment/invoice-fields' --><!-- /ko -->
+        <!-- /ko -->
 
         <div class="checkout-agreements-block">
             <!-- ko foreach: $parent.getRegion('before-place-order') -->

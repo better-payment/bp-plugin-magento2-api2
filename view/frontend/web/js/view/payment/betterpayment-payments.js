@@ -41,6 +41,14 @@ define(
                 type: 'betterpayment_sepa_direct_debit_b2b',
                 component: 'BetterPayment_Core/js/view/payment/method-renderer/sepa-direct-debit-b2b'
             },
+            {
+                type: 'betterpayment_invoice',
+                component: 'BetterPayment_Core/js/view/payment/method-renderer/invoice'
+            },
+            // {
+            //     type: 'betterpayment_invoice_b2b',
+            //     component: 'BetterPayment_Core/js/view/payment/method-renderer/invoice-b2b'
+            // },
             // other payment method renderers if required
         );
         /** Add view logic here if needed */
