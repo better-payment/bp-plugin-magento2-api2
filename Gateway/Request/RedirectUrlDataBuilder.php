@@ -29,7 +29,7 @@ class RedirectUrlDataBuilder implements BuilderInterface
         $payment = $paymentData->getPayment();
 
         return in_array($payment->getMethod(), PaymentMethod::ASYNC_PAYMENT_METHODS) ? [
-            'success_url' => $this->url->getUrl('checkout/onepage/success'),
+            'success_url' => $this->url->getUrl('redirect/successurl'),
             'error_url' => $this->url->getUrl('redirect/errorurl'),
         ] : [];
     }
