@@ -1,5 +1,36 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <preference for="BetterPayment\Core\Api\WebhookInterface" type="BetterPayment\Core\Api\Webhook"/>
+    <preference for="BetterPayment\Core\Api\TransactionInterface" type="BetterPayment\Core\Api\Transaction"/>
+
+    <!--  Support application/x-www-form-urlencoded type request which is used in postbacks from Payment Gateway  -->
+    <type name="Magento\Framework\Webapi\Rest\Request\DeserializerFactory">
+        <arguments>
+            <argument name="deserializers" xsi:type="array">
+                <item name="application_json" xsi:type="array">
+                    <item name="type" xsi:type="string">application/json</item>
+                    <item name="model" xsi:type="string">Magento\Framework\Webapi\Rest\Request\Deserializer\Json</item>
+                </item>
+                <item name="application_xml" xsi:type="array">
+                    <item name="type" xsi:type="string">application/xml</item>
+                    <item name="model" xsi:type="string">Magento\Framework\Webapi\Rest\Request\Deserializer\Xml</item>
+                </item>
+                <item name="application_xhtml_xml" xsi:type="array">
+                    <item name="type" xsi:type="string">application/xhtml+xml</item>
+                    <item name="model" xsi:type="string">Magento\Framework\Webapi\Rest\Request\Deserializer\Xml</item>
+                </item>
+                <item name="text_xml" xsi:type="array">
+                    <item name="type" xsi:type="string">text/xml</item>
+                    <item name="model" xsi:type="string">Magento\Framework\Webapi\Rest\Request\Deserializer\Xml</item>
+                </item>
+                <item name="application_x_www_form_urlencoded" xsi:type="array">
+                    <item name="type" xsi:type="string">application/x-www-form-urlencoded</item>
+                    <item name="model" xsi:type="string">BetterPayment\Core\Webapi\Rest\Request\Deserializer\FormUrlencoded</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
     <!-- BetterPaymentCreditCardFacade START -->
     <virtualType name="BetterPaymentCreditCardFacade" type="Magento\Payment\Model\Method\Adapter">
         <arguments>
