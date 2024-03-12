@@ -3,6 +3,7 @@
 namespace BetterPayment\Core\Util;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\UrlInterface;
 use Magento\Store\Model\ScopeInterface;
 
 class ConfigReader
@@ -43,10 +44,12 @@ class ConfigReader
     public const INVOICE_B2B_AUTOMATICALLY_CAPTURE_ON_ORDER_INVOICE_DOCUMENT_SENT = 'payment/betterpayment_invoice/invoiceB2BAutomaticallyCaptureOnOrderInvoiceDocumentSent';
 
     private ScopeConfigInterface $scopeConfig;
+    private UrlInterface $url;
 
-    public function __construct(ScopeConfigInterface $scopeConfig)
+    public function __construct(ScopeConfigInterface $scopeConfig, UrlInterface $url)
     {
         $this->scopeConfig = $scopeConfig;
+        $this->url = $url;
     }
 
     public function get(string $path)
@@ -63,8 +66,7 @@ class ConfigReader
 
     public function getWebhookUrl(): string
     {
-        // TODO: fetch dynamically
-        return 'https://localhost/rest/V1/betterpayment/webhook';
+        return $this->url->getUrl('rest/V1/betterpayment-webhook');
     }
 
     public function getModuleVersion(): string
