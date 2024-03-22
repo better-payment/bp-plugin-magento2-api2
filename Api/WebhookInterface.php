@@ -2,12 +2,10 @@
 
 namespace BetterPayment\Core\Api;
 
-use Magento\Sales\Api\Data\OrderInterface;
-
 interface WebhookInterface
 {
     /**
-     * @return OrderInterface
+     * @return void
      */
-    public function handle();
+    public function handle(): void;
 }

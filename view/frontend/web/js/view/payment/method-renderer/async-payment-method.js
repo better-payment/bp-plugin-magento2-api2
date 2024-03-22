@@ -18,7 +18,7 @@ define(
             afterPlaceOrder: function () {
                 fullScreenLoader.startLoader();
 
-                let serviceUrl = urlBuilder.createUrl('betterpayment-redirect-url', {});
+                let serviceUrl = urlBuilder.createUrl('/betterpayment-redirect-url', {});
                 storage.get(
                     serviceUrl, false
                 ).done(function(response){
