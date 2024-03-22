@@ -23,13 +23,11 @@ class TransferFactory implements TransferFactoryInterface
     public function create(array $request)
     {
         return $this->transferBuilder
-            ->setMethod('POST')
             ->setHeaders([
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Basic ' . base64_encode($this->configReader->getApiKey() . ':' . $this->configReader->getOutgoingKey()),
             ])
             ->setBody(json_encode($request))
-            ->setUri($this->configReader->getApiUrl() . '/rest/payment')
             ->build();
     }
 }

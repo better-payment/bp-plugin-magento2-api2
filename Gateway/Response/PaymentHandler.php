@@ -2,15 +2,12 @@
 
 namespace BetterPayment\Core\Gateway\Response;
 
-use BetterPayment\Core\Model\AdditionalConfigVars;
-use Magento\Checkout\Model\ConfigProviderInterface;
 use Magento\Payment\Gateway\Data\PaymentDataObject;
 use Magento\Payment\Gateway\Response\HandlerInterface;
-use Magento\Persistent\Model\CheckoutConfigProvider;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\Data\OrderPaymentInterface;
 
-class TransactionHandler implements HandlerInterface
+class PaymentHandler implements HandlerInterface
 {
 
     /**
@@ -23,18 +20,20 @@ class TransactionHandler implements HandlerInterface
         /** @var OrderPaymentInterface $payment */
         $payment = $paymentDataObject->getPayment();
 
-        // Make sure the transaction is marked as pending so we don't get the wrong order state.
+        // Make sure the transaction is marked as pending, so we don't get the wrong order state.
         $payment->setIsTransactionPending(true);
+        // Don't close the transaction yet, so it can be refunded later
+        $payment->setIsTransactionClosed(false);
         $payment->setTransactionId($response['transaction_id']);
 
         if (isset($response['action_data']['url'])) {
             $payment->setAdditionalInformation('redirect_url', $response['action_data']['url']);
+
+            /** @var OrderInterface $order */
+            $order = $payment->getOrder();
+
+            // Don't send the email just yet.
+            $order->setCanSendNewEmailFlag(false);
         }
-
-        /** @var OrderInterface $order */
-        $order = $payment->getOrder();
-
-        // Don't send the email just yet.
-        $order->setCanSendNewEmailFlag(false);
     }
 }

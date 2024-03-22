@@ -22,8 +22,9 @@
                 <model>BetterPaymentCreditCardFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
-                <can_order>1</can_order>
-                <payment_action>order</payment_action>
+                <can_sale>1</can_sale>
+                <can_refund>1</can_refund>
+                <payment_action>authorize_capture</payment_action>
             </betterpayment_credit_card>
 
             <betterpayment_giropay>
@@ -33,8 +34,9 @@
                 <model>BetterPaymentGiropayFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
-                <can_order>1</can_order>
-                <payment_action>order</payment_action>
+                <can_sale>1</can_sale>
+                <can_refund>1</can_refund>
+                <payment_action>authorize_capture</payment_action>
             </betterpayment_giropay>
 
             <betterpayment_paydirekt>
@@ -44,8 +46,9 @@
                 <model>BetterPaymentPaydirektFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
-                <can_order>1</can_order>
-                <payment_action>order</payment_action>
+                <can_sale>1</can_sale>
+                <can_refund>1</can_refund>
+                <payment_action>authorize_capture</payment_action>
             </betterpayment_paydirekt>
 
             <betterpayment_sofort>
@@ -55,8 +58,9 @@
                 <model>BetterPaymentSofortFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
-                <can_order>1</can_order>
-                <payment_action>order</payment_action>
+                <can_sale>1</can_sale>
+                <can_refund>1</can_refund>
+                <payment_action>authorize_capture</payment_action>
             </betterpayment_sofort>
 
             <betterpayment_request_to_pay>
@@ -66,8 +70,9 @@
                 <model>BetterPaymentRequestToPayFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
-                <can_order>1</can_order>
-                <payment_action>order</payment_action>
+                <can_sale>1</can_sale>
+                <can_refund>1</can_refund>
+                <payment_action>authorize_capture</payment_action>
             </betterpayment_request_to_pay>
 
             <betterpayment_paypal>
@@ -77,8 +82,9 @@
                 <model>BetterPaymentPayPalFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
-                <can_order>1</can_order>
-                <payment_action>order</payment_action>
+                <can_sale>1</can_sale>
+                <can_refund>1</can_refund>
+                <payment_action>authorize_capture</payment_action>
             </betterpayment_paypal>
 
             <betterpayment_sepa_direct_debit>
@@ -88,8 +94,9 @@
                 <model>BetterPaymentSepaDirectDebitFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
-                <can_order>1</can_order>
-                <payment_action>order</payment_action>
+                <can_sale>1</can_sale>
+                <can_refund>1</can_refund>
+                <payment_action>authorize_capture</payment_action>
             </betterpayment_sepa_direct_debit>
 
             <betterpayment_sepa_direct_debit_b2b>
@@ -99,8 +106,9 @@
                 <model>BetterPaymentSepaDirectDebitB2BFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
-                <can_order>1</can_order>
-                <payment_action>order</payment_action>
+                <can_sale>1</can_sale>
+                <can_refund>1</can_refund>
+                <payment_action>authorize_capture</payment_action>
             </betterpayment_sepa_direct_debit_b2b>
 
             <betterpayment_invoice>
@@ -110,8 +118,9 @@
                 <model>BetterPaymentInvoiceFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
-                <can_order>1</can_order>
-                <payment_action>order</payment_action>
+                <can_sale>1</can_sale>
+                <can_refund>1</can_refund>
+                <payment_action>authorize_capture</payment_action>
             </betterpayment_invoice>
 
             <betterpayment_invoice_b2b>
@@ -121,8 +130,9 @@
                 <model>BetterPaymentInvoiceB2BFacade</model>
                 <can_use_checkout>1</can_use_checkout>
                 <is_gateway>1</is_gateway>
-                <can_order>1</can_order>
-                <payment_action>order</payment_action>
+                <can_sale>1</can_sale>
+                <can_refund>1</can_refund>
+                <payment_action>authorize_capture</payment_action>
             </betterpayment_invoice_b2b>
         </payment>
     </default>

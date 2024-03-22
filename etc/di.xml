@@ -385,17 +385,19 @@
     <virtualType name="BetterPaymentCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="order" xsi:type="string">BetterPaymentOrderCommand</item>
+                <item name="sale" xsi:type="string">BetterPaymentPaymentCommand</item>
+                <item name="refund" xsi:type="string">BetterPaymentRefundCommand</item>
             </argument>
         </arguments>
     </virtualType>
 
-    <virtualType name="BetterPaymentOrderCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+    <!--  BetterPaymentPaymentCommand START  -->
+    <virtualType name="BetterPaymentPaymentCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
         <arguments>
-            <argument name="requestBuilder" xsi:type="object">BetterPaymentOrderRequestBuilder</argument>
+            <argument name="requestBuilder" xsi:type="object">BetterPaymentPaymentRequestBuilder</argument>
             <argument name="transferFactory" xsi:type="object">BetterPayment\Core\Gateway\Http\TransferFactory</argument>
-            <argument name="client" xsi:type="object">BetterPayment\Core\Gateway\Http\Client\BetterPaymentClient</argument>
-            <argument name="handler" xsi:type="object">BetterPayment\Core\Gateway\Response\TransactionHandler</argument>
+            <argument name="client" xsi:type="object">BetterPayment\Core\Gateway\Http\Client\Payment</argument>
+            <argument name="handler" xsi:type="object">BetterPayment\Core\Gateway\Response\PaymentHandler</argument>
 
             <!--            <argument name="logger" xsi:type="object"></argument>-->
             <!--            <argument name="validator" xsi:type="object">Magento\Braintree\Gateway\Validator\ResponseValidator</argument>-->
@@ -403,7 +405,7 @@
         </arguments>
     </virtualType>
 
-    <virtualType name="BetterPaymentOrderRequestBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
+    <virtualType name="BetterPaymentPaymentRequestBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
         <arguments>
             <argument name="builders" xsi:type="array">
                 <item name="common" xsi:type="string">BetterPayment\Core\Gateway\Request\CommonDataBuilder</item>
@@ -416,5 +418,25 @@
             </argument>
         </arguments>
     </virtualType>
+    <!--  BetterPaymentPaymentCommand END  -->
+
+    <!--  BetterPaymentRefundCommand START  -->
+    <virtualType name="BetterPaymentRefundCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">BetterPaymentRefundRequestBuilder</argument>
+            <argument name="transferFactory" xsi:type="object">BetterPayment\Core\Gateway\Http\TransferFactory</argument>
+            <argument name="client" xsi:type="object">BetterPayment\Core\Gateway\Http\Client\Refund</argument>
+            <argument name="handler" xsi:type="object">BetterPayment\Core\Gateway\Response\RefundHandler</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="BetterPaymentRefundRequestBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="refund" xsi:type="string">BetterPayment\Core\Gateway\Request\RefundDataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!--  BetterPaymentRefundCommand END  -->
     <!-- BetterPaymentCommandPool END -->
 </config>

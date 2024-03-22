@@ -2,23 +2,29 @@
 
 namespace BetterPayment\Core\Controller\ErrorUrl;
 
+use BetterPayment\Core\Util\EntitySearcher;
 use BetterPayment\Core\Util\PaymentStatusMapper;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\Controller\Result\RedirectFactory;
 use Magento\Framework\Message\ManagerInterface;
+use Magento\Sales\Api\InvoiceRepositoryInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
+use Magento\Sales\Api\TransactionRepositoryInterface;
 use Magento\Sales\Model\Order;
 
 class Index implements HttpGetActionInterface
 {
+    private Http $request;
     private RedirectFactory $redirectFactory;
     private ManagerInterface $messageManager;
     private Session $session;
-    private Http $request;
-    private PaymentStatusMapper $paymentStatusMapper;
     private OrderRepositoryInterface $orderRepository;
+    private TransactionRepositoryInterface $transactionRepository;
+    private InvoiceRepositoryInterface $invoiceRepository;
+    private PaymentStatusMapper $paymentStatusMapper;
+    private EntitySearcher $entitySearcher;
 
     public function __construct(
         Http $request,
@@ -26,14 +32,20 @@ class Index implements HttpGetActionInterface
         ManagerInterface $messageManager,
         Session $session,
         OrderRepositoryInterface $orderRepository,
-        PaymentStatusMapper $paymentStatusMapper
+        TransactionRepositoryInterface $transactionRepository,
+        InvoiceRepositoryInterface $invoiceRepository,
+        PaymentStatusMapper $paymentStatusMapper,
+        EntitySearcher $entitySearcher,
     ) {
         $this->request = $request;
         $this->redirectFactory = $redirectFactory;
         $this->messageManager = $messageManager;
         $this->session = $session;
         $this->orderRepository = $orderRepository;
+        $this->transactionRepository = $transactionRepository;
+        $this->invoiceRepository = $invoiceRepository;
         $this->paymentStatusMapper = $paymentStatusMapper;
+        $this->entitySearcher = $entitySearcher;
     }
 
     /**
@@ -41,18 +53,32 @@ class Index implements HttpGetActionInterface
      */
     public function execute()
     {
-        // TODO: fetch transaction status dynamically using API request to endpoint GET rest/transactions/TRANSACTION_ID
         $transactionId = $this->request->getParam('transaction_id');
+
+        // TODO: fetch transaction status dynamically using API request to endpoint GET rest/transactions/TRANSACTION_ID
         $status = 'canceled';
 
-        $order = $this->session->getLastRealOrder();
-        $order->setStatus($this->paymentStatusMapper->mapFromPaymentGatewayStatus($status))
-            ->setState($this->paymentStatusMapper->mapFromPaymentGatewayStatus($status));
-        // TODO: add something to history as well
-        $this->orderRepository->save($order);
-//        $order->save(); // TODO: change this to Save via Repository code
+        if ($status == 'canceled') {
+            // Cancel the invoice
+            $invoice = $this->entitySearcher->getInvoiceByTransactionId($transactionId);
+            $invoice->cancel();
+            $this->invoiceRepository->save($invoice);
 
-        $this->messageManager->addErrorMessage(__('Payment failed in Payment Gateway page. Try to reorder again.'));
+            // Close the transaction
+            $transaction = $this->entitySearcher->getTransactionByTxnId($transactionId);
+            $transaction->setIsClosed(true);
+            $this->transactionRepository->save($transaction);
+
+            // Update the order status/state
+            $order = $invoice->getOrder();
+            $order->setStatus(Order::STATE_CANCELED);
+            $order->setState($order->getConfig()->getStateDefaultStatus(Order::STATE_CANCELED));
+            $order->addCommentToStatusHistory('Payment failed on Payment Gateway.', $status);
+            $this->orderRepository->save($order);
+
+            $this->messageManager->addErrorMessage(__('Payment failed on Payment Gateway. Try to reorder again.'));
+        }
+
         return $this->redirectFactory->create()->setPath('sales/order/history');
     }
 }
