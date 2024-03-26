@@ -1,9 +1,8 @@
-<!--TODO: make required fields functional-->
-<form class="form" action="#" method="post" data-bind="attr: {id: getCode() + '_payment-form'}" data-mage-init='{"validation": {}}'>
+<form class="form" data-bind="attr: {id: getCode() + '-fields-form'}">
     <fieldset class="fieldset">
         <div class="field required">
             <label for="betterpayment_iban_b2b" class="label">IBAN</label>
-            <input type="text" id="betterpayment_iban_b2b" required="true">
+            <input type="text" name="betterpayment_iban_b2b" id="betterpayment_iban_b2b" required="true">
             <small>Please, enter your IBAN.</small>
         </div>
         <div class="field">
@@ -25,13 +24,13 @@
             </p>
         </div>
         <div class="field required">
-            <input type="checkbox" id="mandateAgreement" required>
+            <input type="checkbox" name="mandateAgreement" id="mandateAgreement" required="true">
             <label for="mandateAgreement" class="label">I agree to the following mandate</label>
         </div>
 
         <!-- ko if: risk_check_agreement == 1 -->
         <div class="field required">
-            <input type="checkbox" id="riskCheckAgreement" required>
+            <input type="checkbox" name="riskCheckAgreement" id="riskCheckAgreement" required="true">
             <label for="riskCheckAgreement" class="label">I agree that my data may be forwarded to risk check processing services.</label>
         </div>
         <!-- /ko -->

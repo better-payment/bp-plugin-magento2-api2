@@ -27,6 +27,12 @@ define(
                     }
                 };
             },
+
+            validate: function () {
+                let form = '#' + this.getCode() + '-fields-form';
+
+                return $(form).validation() && $(form).validation('isValid');
+            },
         });
     }
 );
