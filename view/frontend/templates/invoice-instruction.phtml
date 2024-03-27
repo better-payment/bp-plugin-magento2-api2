@@ -1,0 +1,24 @@
+<?php
+use BetterPayment\Core\Block\Checkout\InvoiceInstruction;
+use Magento\Framework\Escaper;
+
+/** @var InvoiceInstruction $block */
+/** @var Escaper $escaper */
+?>
+<?php if ($block->isVisible()) :?>
+<h3><?= $escaper->escapeHtml(__('Invoice payment instructions')) ?></h3>
+
+<div>
+    <label><b><?= $escaper->escapeHtml(__('IBAN: ')) ?></b></label><?= $block->getIban() ?>
+    <br>
+    <label><b><?= $escaper->escapeHtml(__('BIC: ')) ?></b></label><?= $block->getBic() ?>
+    <br>
+    <label><b><?= $escaper->escapeHtml(__('Reference: ')) ?></b></label> <?= $block->getReference() ?>
+    <p>
+        <?= $escaper->escapeHtml(
+            __('Please, transfer the full invoice amount to the bank account displayed in this page. Include reference
+            mentioned above, in your transfer. Your order will stay pending until the payment has been cleared.')
+        ) ?>
+    </p>
+</div>
+<?php endif; ?>
