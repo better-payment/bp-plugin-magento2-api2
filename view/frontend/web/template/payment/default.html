@@ -17,13 +17,16 @@
         </div>
 
         <!-- ko if: getCode() === 'betterpayment_sepa_direct_debit' -->
-            <!-- ko template: 'BetterPayment_Core/payment/sepa-direct-debit-fields' --><!-- /ko -->
+        <!-- ko template: 'BetterPayment_Core/payment/sepa-direct-debit-fields' --><!-- /ko -->
         <!-- /ko -->
         <!-- ko if: getCode() === 'betterpayment_sepa_direct_debit_b2b' -->
-            <!-- ko template: 'BetterPayment_Core/payment/sepa-direct-debit-b2b-fields' --><!-- /ko -->
+        <!-- ko template: 'BetterPayment_Core/payment/sepa-direct-debit-b2b-fields' --><!-- /ko -->
         <!-- /ko -->
         <!-- ko if: getCode() === 'betterpayment_invoice' -->
-            <!-- ko template: 'BetterPayment_Core/payment/invoice-fields' --><!-- /ko -->
+        <!-- ko template: 'BetterPayment_Core/payment/invoice-fields' --><!-- /ko -->
+        <!-- /ko -->
+        <!-- ko if: getCode() === 'betterpayment_invoice_b2b' -->
+        <!-- ko template: 'BetterPayment_Core/payment/invoice-b2b-fields' --><!-- /ko -->
         <!-- /ko -->
 
         <div class="checkout-agreements-block">

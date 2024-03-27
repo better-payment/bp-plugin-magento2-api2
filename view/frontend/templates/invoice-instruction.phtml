@@ -9,11 +9,11 @@ use Magento\Framework\Escaper;
 <h3><?= $escaper->escapeHtml(__('Invoice payment instructions')) ?></h3>
 
 <div>
-    <label><b><?= $escaper->escapeHtml(__('IBAN: ')) ?></b></label><?= $block->getIban() ?>
+    <label><b><?= $escaper->escapeHtml(__('IBAN: ')) ?></b></label><?= $block->iban() ?>
     <br>
-    <label><b><?= $escaper->escapeHtml(__('BIC: ')) ?></b></label><?= $block->getBic() ?>
+    <label><b><?= $escaper->escapeHtml(__('BIC: ')) ?></b></label><?= $block->bic() ?>
     <br>
-    <label><b><?= $escaper->escapeHtml(__('Reference: ')) ?></b></label> <?= $block->getReference() ?>
+    <label><b><?= $escaper->escapeHtml(__('Reference: ')) ?></b></label> <?= $block->reference() ?>
     <p>
         <?= $escaper->escapeHtml(
             __('Please, transfer the full invoice amount to the bank account displayed in this page. Include reference

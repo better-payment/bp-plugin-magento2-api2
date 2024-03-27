@@ -37,11 +37,11 @@ class ConfigReader
     public const INVOICE_RISK_CHECK_AGREEMENT = 'payment/betterpayment_invoice/invoiceRiskCheckAgreement';
     public const INVOICE_AUTOMATICALLY_CAPTURE_ON_ORDER_INVOICE_DOCUMENT_SENT = 'payment/betterpayment_invoice/invoiceAutomaticallyCaptureOnOrderInvoiceDocumentSent';
 
-    public const INVOICE_B2B_DISPLAY_INSTRUCTION = 'payment/betterpayment_invoice/invoiceB2BDisplayInstruction';
-    public const INVOICE_B2B_IBAN = 'payment/betterpayment_invoice/invoiceB2BIBAN';
-    public const INVOICE_B2B_BIC = 'payment/betterpayment_invoice/invoiceB2BBIC';
-    public const INVOICE_B2B_RISK_CHECK_AGREEMENT = 'payment/betterpayment_invoice/invoiceB2BRiskCheckAgreement';
-    public const INVOICE_B2B_AUTOMATICALLY_CAPTURE_ON_ORDER_INVOICE_DOCUMENT_SENT = 'payment/betterpayment_invoice/invoiceB2BAutomaticallyCaptureOnOrderInvoiceDocumentSent';
+    public const INVOICE_B2B_DISPLAY_INSTRUCTION = 'payment/betterpayment_invoice_b2b/invoiceB2BDisplayInstruction';
+    public const INVOICE_B2B_IBAN = 'payment/betterpayment_invoice_b2b/invoiceB2BIBAN';
+    public const INVOICE_B2B_BIC = 'payment/betterpayment_invoice_b2b/invoiceB2BBIC';
+    public const INVOICE_B2B_RISK_CHECK_AGREEMENT = 'payment/betterpayment_invoice_b2b/invoiceB2BRiskCheckAgreement';
+    public const INVOICE_B2B_AUTOMATICALLY_CAPTURE_ON_ORDER_INVOICE_DOCUMENT_SENT = 'payment/betterpayment_invoice_b2b/invoiceB2BAutomaticallyCaptureOnOrderInvoiceDocumentSent';
 
     private ScopeConfigInterface $scopeConfig;
     private UrlInterface $url;

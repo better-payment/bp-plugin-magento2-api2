@@ -1,0 +1,10 @@
+<form class="form" data-bind="attr: {id: getCode() + '-fields-form'}">
+    <fieldset class="fieldset">
+        <!-- ko if: risk_check_agreement == 1 -->
+        <div class="field required">
+            <input type="checkbox" name="riskCheckAgreement" id="riskCheckAgreement" required="true">
+            <label for="riskCheckAgreement" class="label">I agree that my data may be forwarded to risk check processing services.</label>
+        </div>
+        <!-- /ko -->
+    </fieldset>
+</form>

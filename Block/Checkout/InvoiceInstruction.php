@@ -28,27 +28,45 @@ class InvoiceInstruction extends Template
         $this->configReader = $configReader;
     }
 
-    /**
-     * Initialize data and prepare it for output
-     *
-     * @return InvoiceInstruction
-     */
-    protected function _beforeToHtml(): InvoiceInstruction
+    private function paymentMethod(): string
     {
-        $order = $this->checkoutSession->getLastRealOrder();
-
-        $this->addData([
-            'iban' => $this->configReader->get(ConfigReader::INVOICE_IBAN),
-            'bic' => $this->configReader->get(ConfigReader::INVOICE_BIC),
-            'reference' => $order->getIncrementId(),
-        ]);
-
-        return parent::_beforeToHtml();
+        return $this->checkoutSession->getLastRealOrder()->getPayment()->getMethod();
     }
 
     public function isVisible(): bool
     {
-        return $this->checkoutSession->getLastRealOrder()->getPayment()->getMethod() == PaymentMethod::INVOICE
-            && $this->configReader->get(ConfigReader::INVOICE_DISPLAY_INSTRUCTION);
+        return ($this->paymentMethod() == PaymentMethod::INVOICE
+                && $this->configReader->get(ConfigReader::INVOICE_DISPLAY_INSTRUCTION))
+            || ($this->paymentMethod() == PaymentMethod::INVOICE_B2B
+                && $this->configReader->get(ConfigReader::INVOICE_B2B_DISPLAY_INSTRUCTION));
+    }
+
+    public function iban(): string
+    {
+        if ($this->paymentMethod() == PaymentMethod::INVOICE) {
+            return $this->configReader->get(ConfigReader::INVOICE_IBAN);
+        }
+        elseif ($this->paymentMethod() == PaymentMethod::INVOICE_B2B) {
+            return $this->configReader->get(ConfigReader::INVOICE_B2B_IBAN);
+        }
+
+        return '';
+    }
+
+    public function bic(): string
+    {
+        if ($this->paymentMethod() == PaymentMethod::INVOICE) {
+            return $this->configReader->get(ConfigReader::INVOICE_BIC);
+        }
+        elseif ($this->paymentMethod() == PaymentMethod::INVOICE_B2B) {
+            return $this->configReader->get(ConfigReader::INVOICE_B2B_BIC);
+        }
+
+        return '';
+    }
+
+    public function reference(): string
+    {
+        return $this->checkoutSession->getLastRealOrder()->getIncrementId();
     }
 }
