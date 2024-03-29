@@ -249,6 +249,7 @@
             <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\ConfigurableInfo</argument>
             <argument name="valueHandlerPool" xsi:type="object">BetterPaymentSepaDirectDebitValueHandlerPool</argument>
             <argument name="commandPool" xsi:type="object">BetterPaymentCommandPool</argument>
+            <argument name="validatorPool" xsi:type="object">BetterPaymentValidatorPool</argument>
         </arguments>
     </virtualType>
     <!-- BetterPaymentSepaDirectDebitFacade END -->
@@ -284,6 +285,7 @@
             <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\ConfigurableInfo</argument>
             <argument name="valueHandlerPool" xsi:type="object">BetterPaymentSepaDirectDebitB2BValueHandlerPool</argument>
             <argument name="commandPool" xsi:type="object">BetterPaymentCommandPool</argument>
+            <argument name="validatorPool" xsi:type="object">BetterPaymentValidatorPool</argument>
         </arguments>
     </virtualType>
     <!-- BetterPaymentSepaDirectDebitB2BFacade END -->
@@ -319,6 +321,7 @@
             <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\ConfigurableInfo</argument>
             <argument name="valueHandlerPool" xsi:type="object">BetterPaymentInvoiceValueHandlerPool</argument>
             <argument name="commandPool" xsi:type="object">BetterPaymentCommandPool</argument>
+            <argument name="validatorPool" xsi:type="object">BetterPaymentValidatorPool</argument>
         </arguments>
     </virtualType>
     <!-- BetterPaymentInvoiceFacade END -->
@@ -354,6 +357,7 @@
             <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\ConfigurableInfo</argument>
             <argument name="valueHandlerPool" xsi:type="object">BetterPaymentInvoiceB2BValueHandlerPool</argument>
             <argument name="commandPool" xsi:type="object">BetterPaymentCommandPool</argument>
+            <argument name="validatorPool" xsi:type="object">BetterPaymentValidatorPool</argument>
         </arguments>
     </virtualType>
     <!-- BetterPaymentInvoiceB2BFacade END -->
@@ -439,4 +443,14 @@
     </virtualType>
     <!--  BetterPaymentRefundCommand END  -->
     <!-- BetterPaymentCommandPool END -->
+
+    <!-- BetterPaymentValidatorPool START -->
+    <virtualType name="BetterPaymentValidatorPool" type="Magento\Payment\Gateway\Validator\ValidatorPool">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="global" xsi:type="string">BetterPayment\Core\Gateway\Validator\B2BCustomerValidator</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- BetterPaymentValidatorPool END -->
 </config>

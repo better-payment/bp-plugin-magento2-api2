@@ -258,14 +258,14 @@
                         Without agreement, payments will not go through. You can turn this field off, in case you provide it as part of your terms and conditions.
                     </comment>
                 </field>
-                <field id="invoiceAutomaticallyCaptureOnOrderInvoiceDocumentSent" translate="label" type="select" showInDefault="1">
-                    <label>Automatically capture transaction when order invoice document is sent</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>
-                        When order's invoice document is sent, plugin will automatically capture the order's transaction in API.
-                        You can also capture transactions manually, by turning this flag off.
-                    </comment>
-                </field>
+<!--                <field id="invoiceAutomaticallyCaptureOnOrderInvoiceDocumentSent" translate="label" type="select" showInDefault="1">-->
+<!--                    <label>Automatically capture transaction when order invoice document is sent</label>-->
+<!--                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+<!--                    <comment>-->
+<!--                        When order's invoice document is sent, plugin will automatically capture the order's transaction in API.-->
+<!--                        You can also capture transactions manually, by turning this flag off.-->
+<!--                    </comment>-->
+<!--                </field>-->
             </group>
             <!-- END Invoice -->
 
@@ -300,14 +300,14 @@
                         Without agreement, payments will not go through. You can turn this field off, in case you provide it as part of your terms and conditions.
                     </comment>
                 </field>
-                <field id="invoiceB2BAutomaticallyCaptureOnOrderInvoiceDocumentSent" translate="label" type="select" showInDefault="1">
-                    <label>Automatically capture transaction when order invoice document is sent</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>
-                        When order's invoice document is sent, plugin will automatically capture the order's transaction in API.
-                        You can also capture transactions manually, by turning this flag off.
-                    </comment>
-                </field>
+<!--                <field id="invoiceB2BAutomaticallyCaptureOnOrderInvoiceDocumentSent" translate="label" type="select" showInDefault="1">-->
+<!--                    <label>Automatically capture transaction when order invoice document is sent</label>-->
+<!--                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+<!--                    <comment>-->
+<!--                        When order's invoice document is sent, plugin will automatically capture the order's transaction in API.-->
+<!--                        You can also capture transactions manually, by turning this flag off.-->
+<!--                    </comment>-->
+<!--                </field>-->
             </group>
             <!-- END Invoice B2B -->
         </section>
