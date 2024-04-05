@@ -33,7 +33,7 @@ class B2BCustomerValidator extends AbstractValidator
 
             if (!in_array($paymentMethod, $allowedPaymentMethods)) {
                 $isValid = false;
-                $fails[] = $isB2BCustomer ? 'You can pay by B2B type payment method.' : 'You can pay by B2C type payment method.';
+                $fails[] = $isB2BCustomer ? __('You can pay by B2B type payment method.') : __('You can pay by B2C type payment method.');
             }
         }
 

@@ -15,11 +15,11 @@ class Environment implements OptionSourceInterface
         return [
             [
                 'value' => 'test',
-                'label' => 'Test'
+                'label' => __('Test')
             ],
             [
                 'value' => 'production',
-                'label' => 'Production'
+                'label' => __('Production')
             ],
         ];
     }

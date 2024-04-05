@@ -2,9 +2,10 @@ define(
     [
         'Magento_Checkout/js/view/payment/default',
         'Magento_Customer/js/model/customer',
+        'mage/translate',
         'jquery',
     ],
-    function (Component, customer, $) {
+    function (Component, customer, $t, $) {
         'use strict';
         return Component.extend({
             defaults: {
@@ -14,6 +15,7 @@ define(
                 creditor_id: window.checkoutConfig.payment.sepaDirectDebitCreditorID,
                 company_name: window.checkoutConfig.payment.sepaDirectDebitCompanyName,
                 risk_check_agreement: window.checkoutConfig.payment.sepaDirectDebitRiskCheckAgreement,
+                mandate_form_description: $t('mandate_form_description').replace('%company_name', window.checkoutConfig.payment.sepaDirectDebitCompanyName),
             },
 
             getData: function () {

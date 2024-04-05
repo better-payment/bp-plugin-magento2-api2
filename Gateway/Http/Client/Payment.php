@@ -42,10 +42,10 @@ class Payment implements ClientInterface
                 return $responseBody;
             }
             else {
-                throw new ClientException(__('Better Payment Client ERROR: ' . $response->getBody()));
+                throw new ClientException(__('Payment Gateway Error: ' . $responseBody['error_message']));
             }
         } catch (GuzzleException $exception) {
-            throw new ClientException(__('Better Payment Client ERROR: ' . $exception->getMessage()));
+            throw new ClientException(__('Payment Gateway Error: ' . $exception->getMessage()));
         }
     }
 }

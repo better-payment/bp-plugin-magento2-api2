@@ -3,8 +3,6 @@
 namespace BetterPayment\Core\Controller\ErrorUrl;
 
 use BetterPayment\Core\Util\EntitySearcher;
-use BetterPayment\Core\Util\PaymentStatusMapper;
-use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\Controller\Result\RedirectFactory;
@@ -19,32 +17,26 @@ class Index implements HttpGetActionInterface
     private Http $request;
     private RedirectFactory $redirectFactory;
     private ManagerInterface $messageManager;
-    private Session $session;
     private OrderRepositoryInterface $orderRepository;
     private TransactionRepositoryInterface $transactionRepository;
     private InvoiceRepositoryInterface $invoiceRepository;
-    private PaymentStatusMapper $paymentStatusMapper;
     private EntitySearcher $entitySearcher;
 
     public function __construct(
         Http $request,
         RedirectFactory $redirectFactory,
         ManagerInterface $messageManager,
-        Session $session,
         OrderRepositoryInterface $orderRepository,
         TransactionRepositoryInterface $transactionRepository,
         InvoiceRepositoryInterface $invoiceRepository,
-        PaymentStatusMapper $paymentStatusMapper,
         EntitySearcher $entitySearcher,
     ) {
         $this->request = $request;
         $this->redirectFactory = $redirectFactory;
         $this->messageManager = $messageManager;
-        $this->session = $session;
         $this->orderRepository = $orderRepository;
         $this->transactionRepository = $transactionRepository;
         $this->invoiceRepository = $invoiceRepository;
-        $this->paymentStatusMapper = $paymentStatusMapper;
         $this->entitySearcher = $entitySearcher;
     }
 
@@ -73,7 +65,7 @@ class Index implements HttpGetActionInterface
             $order = $invoice->getOrder();
             $order->setStatus(Order::STATE_CANCELED);
             $order->setState($order->getConfig()->getStateDefaultStatus(Order::STATE_CANCELED));
-            $order->addCommentToStatusHistory('Payment failed on Payment Gateway.', $status);
+            $order->addCommentToStatusHistory(__('Payment failed on Payment Gateway.'), $status);
             $this->orderRepository->save($order);
 
             $this->messageManager->addErrorMessage(__('Payment failed on Payment Gateway. Try to reorder again.'));

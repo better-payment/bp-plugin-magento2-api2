@@ -52,7 +52,7 @@ class Webhook implements WebhookInterface
                 $order = $this->entitySearcher->getOrderByTransactionId($transactionId);
                 $order->setStatus($this->paymentStatusMapper->mapFromPaymentGatewayStatus($status));
                 $order->setState($this->paymentStatusMapper->mapFromPaymentGatewayStatus($status));
-                $order->addCommentToStatusHistory('Order status updated via webhook', $status);
+                $order->addCommentToStatusHistory(__('Order status updated via webhook'), $status);
                 $this->orderRepository->save($order);
 
                 $response = new Response('Status updated successfully');

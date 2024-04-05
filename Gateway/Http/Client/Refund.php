@@ -45,7 +45,7 @@ class Refund implements ClientInterface
                 throw new ClientException(__($responseBody['error_message']));
             }
         } catch (GuzzleException $exception) {
-            throw new ClientException(__('Better Payment Client ERROR: ' . $exception->getMessage()));
+            throw new ClientException(__('Payment Gateway Error: ' . $exception->getMessage()));
         }
     }
 }

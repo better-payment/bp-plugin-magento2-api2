@@ -3,15 +3,16 @@
     "description": "Better Payment plugin to implement payment methods using API2",
     "type": "magento2-module",
     "version": "1.0.0",
-    "license": [
-      "proprietary"
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Better Payment",
+            "email": "helpdesk@betterpayment.de"
+        }
     ],
-    "support": {
-          "email": "helpdesk@betterpayment.de"
-	},
     "require": {
-        "php": "~8.0.0|~8.1.0|~8.2.0",
-        "magento/framework": "^100.0.0|^101.0.0|^102.0.0|^103.0.0"
+        "magento/framework": "^103.0.0",
+        "ext-json": "*"
     },
     "autoload": {
         "files": [
