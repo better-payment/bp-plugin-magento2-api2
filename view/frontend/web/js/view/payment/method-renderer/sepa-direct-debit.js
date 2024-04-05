@@ -15,7 +15,7 @@ define(
                 creditor_id: window.checkoutConfig.payment.sepaDirectDebitCreditorID,
                 company_name: window.checkoutConfig.payment.sepaDirectDebitCompanyName,
                 risk_check_agreement: window.checkoutConfig.payment.sepaDirectDebitRiskCheckAgreement,
-                mandate_form_description: $t('mandate_form_description').replace('%company_name', window.checkoutConfig.payment.sepaDirectDebitCompanyName),
+                mandate_form_description: $t('mandate_form_description').replace(/%company_name/g, window.checkoutConfig.payment.sepaDirectDebitCompanyName),
             },
 
             getData: function () {
