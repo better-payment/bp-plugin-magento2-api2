@@ -2,54 +2,54 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <!--GENERAL CONFIGURATION-->
-        <section id="betterpayment" translate="label" showInDefault="1">
+        <section id="betterpayment" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Better Payment</label>
             <tab>sales</tab>
             <resource>BetterPayment_Core::betterpayment_config</resource>
             <!--BASE CONFIGURATION-->
-            <group id="base_configuration" translate="label" sortOrder="10" showInDefault="1">
+            <group id="base_configuration" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[Base configuration]]></label>
-                <field id="environment" translate="label" type="select" showInDefault="1">
+                <field id="environment" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Environment]]></label>
                     <source_model>BetterPayment\Core\Model\Config\Source\Environment</source_model>
                 </field>
             </group>
             <!--TEST ENVIRONMENT CREDENTIALS-->
-            <group id="test_environment_credentials" translate="label" sortOrder="20" showInDefault="1">
+            <group id="test_environment_credentials" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[Test environment credentials]]></label>
-                <field id="testApiUrl" translate="label" type="text" showInDefault="1">
+                <field id="testApiUrl" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[API url]]></label>
                     <comment><![CDATA[You can find your test API url in test dashboard of the payment provider.]]></comment>
                 </field>
-                <field id="testApiKey" translate="label" type="text" showInDefault="1">
+                <field id="testApiKey" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[API key]]></label>
                     <comment><![CDATA[You can find your test API key in test dashboard of the payment provider.]]></comment>
                 </field>
-                <field id="testOutgoingKey" translate="label" type="text" showInDefault="1">
+                <field id="testOutgoingKey" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Outgoing key]]></label>
                     <comment><![CDATA[You can find your test Outgoing key in test dashboard of the payment provider.]]></comment>
                 </field>
-                <field id="testIncomingKey" translate="label" type="text" showInDefault="1">
+                <field id="testIncomingKey" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Incoming key]]></label>
                     <comment><![CDATA[You can find your test Incoming key in test dashboard of the payment provider.]]></comment>
                 </field>
             </group>
             <!--PRODUCTION ENVIRONMENT CREDENTIALS-->
-            <group id="production_environment_credentials" translate="label" sortOrder="30" showInDefault="1">
+            <group id="production_environment_credentials" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[Production environment credentials]]></label>
-                <field id="productionApiUrl" translate="label" type="text" showInDefault="1">
+                <field id="productionApiUrl" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[API url]]></label>
                     <comment><![CDATA[You can find your production API url in production dashboard of the payment provider.]]></comment>
                 </field>
-                <field id="productionApiKey" translate="label" type="text" showInDefault="1">
+                <field id="productionApiKey" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[API key]]></label>
                     <comment><![CDATA[You can find your production API key in production dashboard of the payment provider.]]></comment>
                 </field>
-                <field id="productionOutgoingKey" translate="label" type="text" showInDefault="1">
+                <field id="productionOutgoingKey" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Outgoing key]]></label>
                     <comment><![CDATA[You can find your production Outgoing key in production dashboard of the payment provider.]]></comment>
                 </field>
-                <field id="productionIncomingKey" translate="label" type="text" showInDefault="1">
+                <field id="productionIncomingKey" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Incoming key]]></label>
                     <comment><![CDATA[You can find your production Incoming key in production dashboard of the payment provider.]]></comment>
                 </field>
@@ -59,112 +59,112 @@
         <!--PAYMENT METHODS CONFIGURATION-->
         <section id="payment">
             <!-- Credit Card -->
-            <group id="betterpayment_credit_card" translate="label" showInDefault="1">
+            <group id="betterpayment_credit_card" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[Credit Card (Better Payment)]]></label>
-                <field id="active" translate="label" type="select" showInDefault="1">
+                <field id="active" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Enabled]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="title" translate="label" type="text" showInDefault="1">
+                <field id="title" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Title]]></label>
                 </field>
             </group>
             <!-- END Credit Card -->
 
             <!-- Giropay -->
-            <group id="betterpayment_giropay" translate="label" showInDefault="1">
+            <group id="betterpayment_giropay" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[Giropay (Better Payment)]]></label>
-                <field id="active" translate="label" type="select" showInDefault="1">
+                <field id="active" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Enabled]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="title" translate="label" type="text" showInDefault="1">
+                <field id="title" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Title]]></label>
                 </field>
             </group>
             <!-- END Giropay -->
 
             <!-- Paydirekt -->
-            <group id="betterpayment_paydirekt" translate="label" showInDefault="1">
+            <group id="betterpayment_paydirekt" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[Paydirekt (Better Payment)]]></label>
-                <field id="active" translate="label" type="select" showInDefault="1">
+                <field id="active" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Enabled]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="title" translate="label" type="text" showInDefault="1">
+                <field id="title" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Title]]></label>
                 </field>
             </group>
             <!-- END Paydirekt -->
 
             <!-- Sofort -->
-            <group id="betterpayment_sofort" translate="label" showInDefault="1">
+            <group id="betterpayment_sofort" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[Sofort (Better Payment)]]></label>
-                <field id="active" translate="label" type="select" showInDefault="1">
+                <field id="active" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Enabled]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="title" translate="label" type="text" showInDefault="1">
+                <field id="title" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Title]]></label>
                 </field>
             </group>
             <!-- END Sofort -->
 
             <!-- Request To Pay -->
-            <group id="betterpayment_request_to_pay" translate="label" showInDefault="1">
+            <group id="betterpayment_request_to_pay" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[Request To Pay (Better Payment)]]></label>
-                <field id="active" translate="label" type="select" showInDefault="1">
+                <field id="active" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Enabled]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="title" translate="label" type="text" showInDefault="1">
+                <field id="title" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Title]]></label>
                 </field>
             </group>
             <!-- END Request To Pay -->
 
             <!-- PayPal -->
-            <group id="betterpayment_paypal" translate="label" showInDefault="1">
+            <group id="betterpayment_paypal" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[PayPal (Better Payment)]]></label>
-                <field id="active" translate="label" type="select" showInDefault="1">
+                <field id="active" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Enabled]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="title" translate="label" type="text" showInDefault="1">
+                <field id="title" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Title]]></label>
                 </field>
             </group>
             <!-- END PayPal -->
 
             <!-- SEPA Direct Debit -->
-            <group id="betterpayment_sepa_direct_debit" translate="label" showInDefault="1">
+            <group id="betterpayment_sepa_direct_debit" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[SEPA Direct Debit (Better Payment)]]></label>
-                <field id="active" translate="label" type="select" showInDefault="1">
+                <field id="active" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Enabled]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="title" translate="label" type="text" showInDefault="1">
+                <field id="title" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Title]]></label>
                 </field>
-                <field id="sepaDirectDebitCreditorID" translate="label" type="text" showInDefault="1">
+                <field id="sepaDirectDebitCreditorID" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Creditor ID]]></label>
                     <comment><![CDATA[You need to provide a valid Creditor ID, to be shown in mandate agreement on the checkout page.]]></comment>
                 </field>
-                <field id="sepaDirectDebitCompanyName" translate="label" type="text" showInDefault="1">
+                <field id="sepaDirectDebitCompanyName" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Company name]]></label>
                     <comment><![CDATA[You need to provide Company Name, to be shown in mandate reference agreement on the checkout page.]]></comment>
                 </field>
-                <field id="sepaDirectDebitCollectDateOfBirth" translate="label" type="select" showInDefault="1">
+                <field id="sepaDirectDebitCollectDateOfBirth" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Collect date of birth]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[If you have configured risk checks with the payment provider, it may require date of birth from your customers.]]></comment>
                 </field>
-                <field id="sepaDirectDebitCollectGender" translate="label" type="select" showInDefault="1">
+                <field id="sepaDirectDebitCollectGender" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Collect gender information]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[If you have configured risk checks with the payment provider, it may require gender from your customers.]]></comment>
                 </field>
-                <field id="sepaDirectDebitRiskCheckAgreement" translate="label" type="select" showInDefault="1">
+                <field id="sepaDirectDebitRiskCheckAgreement" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Require customers to agree to risk check processing]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[If you turn this flag on, we will require the customer to agree to the risk check processing in the checkout page. Without agreement, payments will not go through. You can turn this field off, in case you provide it as part of your terms and conditions.]]></comment>
@@ -173,24 +173,24 @@
             <!-- END SEPA Direct Debit -->
 
             <!-- SEPA Direct Debit B2B -->
-            <group id="betterpayment_sepa_direct_debit_b2b" translate="label" showInDefault="1">
+            <group id="betterpayment_sepa_direct_debit_b2b" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[SEPA Direct Debit B2B (Better Payment)]]></label>
-                <field id="active" translate="label" type="select" showInDefault="1">
+                <field id="active" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Enabled]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="title" translate="label" type="text" showInDefault="1">
+                <field id="title" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Title]]></label>
                 </field>
-                <field id="sepaDirectDebitB2BCreditorID" translate="label" type="text" showInDefault="1">
+                <field id="sepaDirectDebitB2BCreditorID" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Creditor ID]]></label>
                     <comment><![CDATA[You need to provide a valid Creditor ID, to be shown in mandate agreement on the checkout page.]]></comment>
                 </field>
-                <field id="sepaDirectDebitB2BCompanyName" translate="label" type="text" showInDefault="1">
+                <field id="sepaDirectDebitB2BCompanyName" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Company name]]></label>
                     <comment><![CDATA[You need to provide Company Name, to be shown in mandate reference agreement on the checkout page.]]></comment>
                 </field>
-                <field id="sepaDirectDebitB2BRiskCheckAgreement" translate="label" type="select" showInDefault="1">
+                <field id="sepaDirectDebitB2BRiskCheckAgreement" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Require customers to agree to risk check processing]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[If you turn this flag on, we will require the customer to agree to the risk check processing in the checkout page. Without agreement, payments will not go through. You can turn this field off, in case you provide it as part of your terms and conditions.]]></comment>
@@ -199,44 +199,44 @@
             <!-- END SEPA Direct Debit B2B -->
 
             <!-- Invoice -->
-            <group id="betterpayment_invoice" translate="label" showInDefault="1">
+            <group id="betterpayment_invoice" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[Invoice (Better Payment)]]></label>
-                <field id="active" translate="label" type="select" showInDefault="1">
+                <field id="active" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Enabled]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="title" translate="label" type="text" showInDefault="1">
+                <field id="title" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Title]]></label>
                 </field>
-                <field id="invoiceDisplayInstruction" translate="label" type="select" showInDefault="1">
+                <field id="invoiceDisplayInstruction" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Display payment instruction to the customer]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[When activated, we will be instructing the customer that they should send ORDER_ID as a reference with amount due to the given bank account below.]]></comment>
                 </field>
-                <field id="invoiceIBAN" translate="label" type="text" showInDefault="1">
+                <field id="invoiceIBAN" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[IBAN (optional)]]></label>
                     <comment><![CDATA[Your company's IBAN.]]></comment>
                 </field>
-                <field id="invoiceBIC" translate="label" type="text" showInDefault="1">
+                <field id="invoiceBIC" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[BIC (optional)]]></label>
                     <comment><![CDATA[Your company's BIC.]]></comment>
                 </field>
-                <field id="invoiceCollectDateOfBirth" translate="label" type="select" showInDefault="1">
+                <field id="invoiceCollectDateOfBirth" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Collect date of birth]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[If you have configured risk checks with the payment provider, it may require date of birth from your customers.]]></comment>
                 </field>
-                <field id="invoiceCollectGender" translate="label" type="select" showInDefault="1">
+                <field id="invoiceCollectGender" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Collect gender information]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[If you have configured risk checks with the payment provider, it may require gender from your customers.]]></comment>
                 </field>
-                <field id="invoiceRiskCheckAgreement" translate="label" type="select" showInDefault="1">
+                <field id="invoiceRiskCheckAgreement" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Require customers to agree to risk check processing]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[If you turn this flag on, we will require the customer to agree to the risk check processing in the checkout page. Without agreement, payments will not go through. You can turn this field off, in case you provide it as part of your terms and conditions.]]></comment>
                 </field>
-<!--                <field id="invoiceAutomaticallyCaptureOnOrderInvoiceDocumentSent" translate="label" type="select" showInDefault="1">-->
+<!--                <field id="invoiceAutomaticallyCaptureOnOrderInvoiceDocumentSent" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">-->
 <!--                    <label><![CDATA[Automatically capture transaction when order invoice document is sent]]></label>-->
 <!--                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
 <!--                    <comment><![CDATA[When order's invoice document is sent, plugin will automatically capture the order's transaction in API. You can also capture transactions manually, by turning this flag off.]]></comment>-->
@@ -245,34 +245,34 @@
             <!-- END Invoice -->
 
             <!-- Invoice B2B -->
-            <group id="betterpayment_invoice_b2b" translate="label" showInDefault="1">
+            <group id="betterpayment_invoice_b2b" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[Invoice B2B (Better Payment)]]></label>
-                <field id="active" translate="label" type="select" showInDefault="1">
+                <field id="active" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Enabled]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="title" translate="label" type="text" showInDefault="1">
+                <field id="title" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Title]]></label>
                 </field>
-                <field id="invoiceB2BDisplayInstruction" translate="label" type="select" showInDefault="1">
+                <field id="invoiceB2BDisplayInstruction" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Display payment instruction to the customer]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[When activated, we will be instructing the customer that they should send ORDER_ID as a reference with amount due to the given bank account below.]]></comment>
                 </field>
-                <field id="invoiceB2BIBAN" translate="label" type="text" showInDefault="1">
+                <field id="invoiceB2BIBAN" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[IBAN (optional)]]></label>
                     <comment><![CDATA[Your company's IBAN.]]></comment>
                 </field>
-                <field id="invoiceB2BBIC" translate="label" type="text" showInDefault="1">
+                <field id="invoiceB2BBIC" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[BIC (optional)]]></label>
                     <comment><![CDATA[Your company's BIC.]]></comment>
                 </field>
-                <field id="invoiceB2BRiskCheckAgreement" translate="label" type="select" showInDefault="1">
+                <field id="invoiceB2BRiskCheckAgreement" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Require customers to agree to risk check processing]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[If you turn this flag on, we will require the customer to agree to the risk check processing in the checkout page. Without agreement, payments will not go through. You can turn this field off, in case you provide it as part of your terms and conditions.]]></comment>
                 </field>
-<!--                <field id="invoiceB2BAutomaticallyCaptureOnOrderInvoiceDocumentSent" translate="label" type="select" showInDefault="1">-->
+<!--                <field id="invoiceB2BAutomaticallyCaptureOnOrderInvoiceDocumentSent" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">-->
 <!--                    <label><![CDATA[Automatically capture transaction when order invoice document is sent]]></label>-->
 <!--                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
 <!--                    <comment><![CDATA[When order's invoice document is sent, plugin will automatically capture the order's transaction in API. You can also capture transactions manually, by turning this flag off.]]></comment>-->
