@@ -1,16 +1,16 @@
 define(
     [
         'Magento_Checkout/js/view/payment/default',
-        'Magento_Customer/js/model/customer',
+        'Magento_Checkout/js/model/quote',
         'mage/translate',
         'jquery',
     ],
-    function (Component, customer, $t, $) {
+    function (Component, quote, $t, $) {
         'use strict';
         return Component.extend({
             defaults: {
                 template: 'BetterPayment_Core/payment/default',
-                betterpayment_account_holder: customer.customerData.firstname + ' ' + customer.customerData.lastname,
+                betterpayment_account_holder: quote.billingAddress().firstname + ' ' + quote.billingAddress().lastname,
                 betterpayment_sepa_mandate: crypto.randomUUID(),
                 creditor_id: window.checkoutConfig.payment.sepaDirectDebitCreditorID,
                 company_name: window.checkoutConfig.payment.sepaDirectDebitCompanyName,
