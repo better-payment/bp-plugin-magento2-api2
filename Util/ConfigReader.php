@@ -3,6 +3,8 @@
 namespace BetterPayment\Core\Util;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Component\ComponentRegistrar;
+use Magento\Framework\Component\ComponentRegistrarInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\ScopeInterface;
 
@@ -45,11 +47,16 @@ class ConfigReader
 
     private ScopeConfigInterface $scopeConfig;
     private UrlInterface $url;
+    private ComponentRegistrarInterface $componentRegistrar;
 
-    public function __construct(ScopeConfigInterface $scopeConfig, UrlInterface $url)
-    {
+    public function __construct(
+        ScopeConfigInterface $scopeConfig,
+        UrlInterface $url,
+        ComponentRegistrarInterface $componentRegistrar,
+    ) {
         $this->scopeConfig = $scopeConfig;
         $this->url = $url;
+        $this->componentRegistrar = $componentRegistrar;
     }
 
     public function get(string $path)
@@ -71,8 +78,10 @@ class ConfigReader
 
     public function getModuleVersion(): string
     {
-        // TODO: fetch dynamically from composer.json (most probably)
-        return '1.0.0';
+        $modulePath = $this->componentRegistrar->getPath(ComponentRegistrar::MODULE, 'BetterPayment_Core');
+        $composerJsonData = json_decode(file_get_contents($modulePath . '/composer.json'), true);
+
+        return $composerJsonData['version'];
     }
 
     public function getApiUrl(): string
