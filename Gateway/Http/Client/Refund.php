@@ -2,7 +2,6 @@
 
 namespace BetterPayment\Core\Gateway\Http\Client;
 
-use BetterPayment\Core\Util\ConfigReader;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
@@ -13,14 +12,10 @@ use Magento\Payment\Gateway\Http\TransferInterface;
 class Refund implements ClientInterface
 {
     private Client $client;
-    private ConfigReader $configReader;
 
-    public function __construct(
-        Client $client,
-        ConfigReader $configReader
-    ) {
+    public function __construct(Client $client)
+    {
         $this->client = $client;
-        $this->configReader = $configReader;
     }
 
     /**
@@ -30,7 +25,7 @@ class Refund implements ClientInterface
     {
         $request = new Request(
             'POST',
-            $this->configReader->getApiUrl() . '/rest/refund',
+            $transferObject->getUri() . '/rest/refund',
             $transferObject->getHeaders(),
             $transferObject->getBody()
         );
