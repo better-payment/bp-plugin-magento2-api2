@@ -1,5 +1,12 @@
 This changelog follows the specifications of https://keepachangelog.com. Please, follow the specs when adding a new entry
 
+## [1.0.1] - 2024-04-08
+
+### Fixed
+
+- Webhook issues for Invoice payments
+- Account Holder not being seen in Guest Checkout
+
 ## [1.0.0] - 2024-04-08
 
 ### Added
