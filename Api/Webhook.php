@@ -5,6 +5,7 @@ namespace BetterPayment\Core\Api;
 use BetterPayment\Core\Util\ConfigReader;
 use BetterPayment\Core\Util\EntitySearcher;
 use BetterPayment\Core\Util\PaymentStatusMapper;
+use Magento\Sales\Api\InvoiceRepositoryInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Framework\Webapi\Rest\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,7 @@ class Webhook implements WebhookInterface
 {
     private Request $request;
     private OrderRepositoryInterface $orderRepository;
+    private InvoiceRepositoryInterface $invoiceRepository;
     private ConfigReader $configReader;
     private PaymentStatusMapper $paymentStatusMapper;
     private EntitySearcher $entitySearcher;
@@ -20,12 +22,14 @@ class Webhook implements WebhookInterface
     public function __construct(
         Request $request,
         OrderRepositoryInterface $orderRepository,
+        InvoiceRepositoryInterface $invoiceRepository,
         ConfigReader $configReader,
         PaymentStatusMapper $paymentStatusMapper,
         EntitySearcher $entitySearcher,
     ) {
         $this->request = $request;
         $this->orderRepository = $orderRepository;
+        $this->invoiceRepository = $invoiceRepository;
         $this->configReader = $configReader;
         $this->paymentStatusMapper = $paymentStatusMapper;
         $this->entitySearcher = $entitySearcher;
@@ -45,14 +49,22 @@ class Webhook implements WebhookInterface
             $checksum = sha1($query . $this->configReader->getIncomingKey());
 
             if ($checksum == $this->request->getParam('checksum')) {
-                // Update the order status/state
                 $transactionId = $params['transaction_id'];
-                $status = $params['status'];
+                $transactionStatus = $params['status'];
 
-                $order = $this->entitySearcher->getOrderByTransactionId($transactionId);
-                $order->setStatus($this->paymentStatusMapper->mapFromPaymentGatewayStatus($status));
-                $order->setState($this->paymentStatusMapper->mapFromPaymentGatewayStatus($status));
-                $order->addCommentToStatusHistory(__('Order status updated via webhook'), $status);
+                $invoice = $this->entitySearcher->getInvoiceByTransactionId($transactionId);
+                // Capture the invoice if transaction status is completed
+                if ($transactionStatus == PaymentStatusMapper::COMPLETED) {
+                    $invoice->capture();
+                    $this->invoiceRepository->save($invoice);
+                }
+
+                // Update the order status/state
+                $order = $invoice->getOrder();
+                $status = $this->paymentStatusMapper->mapFromPaymentGatewayStatus($transactionStatus);
+                $order->setStatus($status);
+                $order->setState($status);
+                $order->addCommentToStatusHistory(__('Order status updated via webhook'));
                 $this->orderRepository->save($order);
 
                 $response = new Response('Status updated successfully');

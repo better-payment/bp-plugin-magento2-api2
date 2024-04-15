@@ -27,6 +27,7 @@ class TransferFactory implements TransferFactoryInterface
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Basic ' . base64_encode($this->configReader->getApiKey() . ':' . $this->configReader->getOutgoingKey()),
             ])
+            ->setUri($this->configReader->getApiUrl())
             ->setBody(json_encode($request))
             ->build();
     }

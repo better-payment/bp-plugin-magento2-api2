@@ -2,7 +2,10 @@
 
 namespace BetterPayment\Core\Controller\ErrorUrl;
 
+use BetterPayment\Core\Gateway\Http\Client\Transaction;
+use BetterPayment\Core\Gateway\Http\TransferFactory;
 use BetterPayment\Core\Util\EntitySearcher;
+use BetterPayment\Core\Util\PaymentStatusMapper;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\Controller\Result\RedirectFactory;
@@ -21,6 +24,8 @@ class Index implements HttpGetActionInterface
     private TransactionRepositoryInterface $transactionRepository;
     private InvoiceRepositoryInterface $invoiceRepository;
     private EntitySearcher $entitySearcher;
+    private TransferFactory $transferFactory;
+    private Transaction $transactionClient;
 
     public function __construct(
         Http $request,
@@ -30,6 +35,8 @@ class Index implements HttpGetActionInterface
         TransactionRepositoryInterface $transactionRepository,
         InvoiceRepositoryInterface $invoiceRepository,
         EntitySearcher $entitySearcher,
+        TransferFactory $transferFactory,
+        Transaction $transactionClient
     ) {
         $this->request = $request;
         $this->redirectFactory = $redirectFactory;
@@ -38,6 +45,8 @@ class Index implements HttpGetActionInterface
         $this->transactionRepository = $transactionRepository;
         $this->invoiceRepository = $invoiceRepository;
         $this->entitySearcher = $entitySearcher;
+        $this->transferFactory = $transferFactory;
+        $this->transactionClient = $transactionClient;
     }
 
     /**
@@ -45,30 +54,35 @@ class Index implements HttpGetActionInterface
      */
     public function execute()
     {
-        $transactionId = $this->request->getParam('transaction_id');
+        try {
+            $transactionId = $this->request->getParam('transaction_id');
 
-        // TODO: fetch transaction status dynamically using API request to endpoint GET rest/transactions/TRANSACTION_ID
-        $status = 'canceled';
+            $response = $this->transactionClient->placeRequest($this->transferFactory->create([
+                'transaction_id' => $transactionId
+            ]));
 
-        if ($status == 'canceled') {
-            // Cancel the invoice
-            $invoice = $this->entitySearcher->getInvoiceByTransactionId($transactionId);
-            $invoice->cancel();
-            $this->invoiceRepository->save($invoice);
+            if ($response['status'] == PaymentStatusMapper::CANCELED) {
+                // Cancel the invoice
+                $invoice = $this->entitySearcher->getInvoiceByTransactionId($transactionId);
+                $invoice->cancel();
+                $this->invoiceRepository->save($invoice);
 
-            // Close the transaction
-            $transaction = $this->entitySearcher->getTransactionByTxnId($transactionId);
-            $transaction->setIsClosed(true);
-            $this->transactionRepository->save($transaction);
+                // Close the transaction
+                $transaction = $this->entitySearcher->getTransactionByTxnId($transactionId);
+                $transaction->setIsClosed(true);
+                $this->transactionRepository->save($transaction);
 
-            // Update the order status/state
-            $order = $invoice->getOrder();
-            $order->setStatus(Order::STATE_CANCELED);
-            $order->setState($order->getConfig()->getStateDefaultStatus(Order::STATE_CANCELED));
-            $order->addCommentToStatusHistory(__('Payment failed on Payment Gateway.'), $status);
-            $this->orderRepository->save($order);
+                // Update the order status/state
+                $order = $invoice->getOrder();
+                $order->setStatus(Order::STATE_CANCELED);
+                $order->setState($order->getConfig()->getStateDefaultStatus(Order::STATE_CANCELED));
+                $order->addCommentToStatusHistory(__('Payment failed on Payment Gateway.'));
+                $this->orderRepository->save($order);
 
-            $this->messageManager->addErrorMessage(__('Payment failed on Payment Gateway. Try to reorder again.'));
+                $this->messageManager->addErrorMessage(__('Payment failed on Payment Gateway. Try to reorder again.'));
+            }
+        } catch (\Exception $exception) {
+            $this->messageManager->addErrorMessage($exception->getMessage());
         }
 
         return $this->redirectFactory->create()->setPath('sales/order/history');
