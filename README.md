@@ -8,7 +8,7 @@ Navigate to [our wiki page](https://github.com/better-payment/bp-plugin-magento2
 
 ## Installation
 
-Follow our installation instructions documented [in our wiki](https://github.com/better-payment/bp-plugin-magento2-api2/wiki/Installation).
+Follow our installation instructions documented [in our wiki](https://github.com/better-payment/bp-plugin-magento2-api2/wiki).
 
 ## Magento and plugin versioning
 
