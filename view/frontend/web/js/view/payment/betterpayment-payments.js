@@ -34,6 +34,10 @@ define(
                 component: 'BetterPayment_Core/js/view/payment/method-renderer/async-payment-method'
             },
             {
+                type: 'betterpayment_aiia',
+                component: 'BetterPayment_Core/js/view/payment/method-renderer/async-payment-method'
+            },
+            {
                 type: 'betterpayment_sepa_direct_debit',
                 component: 'BetterPayment_Core/js/view/payment/method-renderer/sepa-direct-debit'
             },

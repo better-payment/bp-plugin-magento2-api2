@@ -136,6 +136,19 @@
             </group>
             <!-- END PayPal -->
 
+            <!-- Aiia -->
+            <group id="betterpayment_aiia" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label><![CDATA[Aiia Pay (Better Payment)]]></label>
+                <field id="active" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enabled]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Title]]></label>
+                </field>
+            </group>
+            <!-- END Aiia -->
+
             <!-- SEPA Direct Debit -->
             <group id="betterpayment_sepa_direct_debit" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[SEPA Direct Debit (Better Payment)]]></label>

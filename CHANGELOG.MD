@@ -1,5 +1,11 @@
 This changelog follows the specifications of https://keepachangelog.com. Please, follow the specs when adding a new entry
 
+## [1.1.0] - 2024-08-02
+
+### Added
+
+- Aiia payment method
+
 ## [1.0.1] - 2024-04-08
 
 ### Fixed

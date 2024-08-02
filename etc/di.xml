@@ -240,6 +240,40 @@
     </virtualType>
     <!-- BetterPaymentPayPalValueHandlerPool END -->
 
+    <!-- BetterPaymentAiiaFacade START -->
+    <virtualType name="BetterPaymentAiiaFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">BetterPayment\Core\Util\PaymentMethod::AIIA</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form\Cc</argument>
+            <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\ConfigurableInfo</argument>
+            <argument name="valueHandlerPool" xsi:type="object">BetterPaymentAiiaValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">BetterPaymentCommandPool</argument>
+        </arguments>
+    </virtualType>
+    <!-- BetterPaymentAiiaFacade END -->
+
+    <!-- BetterPaymentAiiaValueHandlerPool START -->
+    <virtualType name="BetterPaymentAiiaValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">BetterPaymentAiiaConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="BetterPaymentAiiaConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">BetterPaymentAiiaConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="BetterPaymentAiiaConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">BetterPayment\Core\Util\PaymentMethod::AIIA</argument>
+        </arguments>
+    </virtualType>
+    <!-- BetterPaymentAiiaValueHandlerPool END -->
+
 
     <!-- BetterPaymentSepaDirectDebitFacade START -->
     <virtualType name="BetterPaymentSepaDirectDebitFacade" type="Magento\Payment\Model\Method\Adapter">
