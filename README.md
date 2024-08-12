@@ -20,7 +20,7 @@ We support Magento 2.4.6 and upwards.
 
 **Latest Releases for:**
 
-- Magento 2.4.6 - [Plugin Version 1.1.0](https://github.com/better-payment/bp-plugin-magento2-api2/releases/tag/1.1.0)
+- Magento 2.4.6 - [Plugin Version 1.1.1](https://github.com/better-payment/bp-plugin-magento2-api2/releases/tag/1.1.1)
 
 ## Configuration
 
