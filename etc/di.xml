@@ -425,6 +425,7 @@
             <argument name="commands" xsi:type="array">
                 <item name="sale" xsi:type="string">BetterPaymentPaymentCommand</item>
                 <item name="refund" xsi:type="string">BetterPaymentRefundCommand</item>
+                <item name="capture" xsi:type="string">BetterPaymentCaptureCommand</item>
             </argument>
         </arguments>
     </virtualType>
@@ -476,6 +477,25 @@
         </arguments>
     </virtualType>
     <!--  BetterPaymentRefundCommand END  -->
+
+    <!-- BetterPaymentCaptureCommand START -->
+    <virtualType name="BetterPaymentCaptureCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">BetterPaymentCaptureRequestBuilder</argument>
+            <argument name="transferFactory" xsi:type="object">BetterPayment\Core\Gateway\Http\TransferFactory</argument>
+            <argument name="client" xsi:type="object">BetterPayment\Core\Gateway\Http\Client\Capture</argument>
+            <argument name="handler" xsi:type="object">BetterPayment\Core\Gateway\Response\CaptureHandler</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="BetterPaymentCaptureRequestBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="capture" xsi:type="string">BetterPayment\Core\Gateway\Request\CaptureDataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- BetterPaymentCaptureCommand END -->
     <!-- BetterPaymentCommandPool END -->
 
     <!-- BetterPaymentValidatorPool START -->
