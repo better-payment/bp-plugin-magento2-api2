@@ -6,7 +6,7 @@ use Magento\Payment\Gateway\Data\PaymentDataObject;
 use Magento\Payment\Gateway\Response\HandlerInterface;
 use Magento\Sales\Api\Data\OrderPaymentInterface;
 
-class RefundHandler implements HandlerInterface
+class CaptureHandler implements HandlerInterface
 {
 
     /**
