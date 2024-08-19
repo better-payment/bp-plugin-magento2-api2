@@ -6,6 +6,7 @@ use BetterPayment\Core\Gateway\Http\Client\Transaction;
 use BetterPayment\Core\Gateway\Http\TransferFactory;
 use BetterPayment\Core\Util\EntitySearcher;
 use BetterPayment\Core\Util\PaymentStatusMapper;
+use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\Controller\Result\RedirectFactory;
@@ -20,6 +21,7 @@ class Index implements HttpGetActionInterface
     private Http $request;
     private RedirectFactory $redirectFactory;
     private ManagerInterface $messageManager;
+    private Session $checkoutSession;
     private OrderRepositoryInterface $orderRepository;
     private TransactionRepositoryInterface $transactionRepository;
     private InvoiceRepositoryInterface $invoiceRepository;
@@ -31,6 +33,7 @@ class Index implements HttpGetActionInterface
         Http $request,
         RedirectFactory $redirectFactory,
         ManagerInterface $messageManager,
+        Session $checkoutSession,
         OrderRepositoryInterface $orderRepository,
         TransactionRepositoryInterface $transactionRepository,
         InvoiceRepositoryInterface $invoiceRepository,
@@ -41,6 +44,7 @@ class Index implements HttpGetActionInterface
         $this->request = $request;
         $this->redirectFactory = $redirectFactory;
         $this->messageManager = $messageManager;
+        $this->checkoutSession = $checkoutSession;
         $this->orderRepository = $orderRepository;
         $this->transactionRepository = $transactionRepository;
         $this->invoiceRepository = $invoiceRepository;
@@ -85,6 +89,7 @@ class Index implements HttpGetActionInterface
             $this->messageManager->addErrorMessage($exception->getMessage());
         }
 
-        return $this->redirectFactory->create()->setPath('sales/order/history');
+        $this->checkoutSession->restoreQuote();
+        return $this->redirectFactory->create()->setPath('checkout/cart');
     }
 }

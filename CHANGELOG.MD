@@ -1,5 +1,4 @@
 This changelog follows the specifications of https://keepachangelog.com. Please, follow the specs when adding a new entry
-
 ## [1.2.0] - 2024-08-19
 
 ### Added
@@ -7,6 +6,12 @@ This changelog follows the specifications of https://keepachangelog.com. Please,
 - Capture
 - Partial capture
 - Partial refund per invoice
+
+## [1.1.1] - 2024-08-12
+
+### Fixed
+
+- Prevent cart being empty after payment failed or canceled
 
 ## [1.1.0] - 2024-08-02
 
