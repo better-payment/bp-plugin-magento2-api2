@@ -2,7 +2,7 @@
     "name": "better-payment/bp-plugin-magento2-api2",
     "description": "Better Payment plugin to implement payment methods using API2",
     "type": "magento2-module",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "license": "proprietary",
     "authors": [
         {
