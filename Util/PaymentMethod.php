@@ -11,6 +11,7 @@ class PaymentMethod
     public const REQUEST_TO_PAY = 'betterpayment_request_to_pay';
     public const PAYPAL = 'betterpayment_paypal';
     public const AIIA = 'betterpayment_aiia';
+    public const IDEAL = 'betterpayment_ideal';
     public const SEPA_DIRECT_DEBIT = 'betterpayment_sepa_direct_debit';
     public const SEPA_DIRECT_DEBIT_B2B = 'betterpayment_sepa_direct_debit_b2b';
     public const INVOICE = 'betterpayment_invoice';
@@ -23,7 +24,8 @@ class PaymentMethod
         self::SOFORT,
         self::REQUEST_TO_PAY,
         self::PAYPAL,
-        self::AIIA
+        self::AIIA,
+        self::IDEAL,
     ];
 
     public const SHORTCODE = [
@@ -34,6 +36,7 @@ class PaymentMethod
         self::REQUEST_TO_PAY => 'rtp',
         self::PAYPAL => 'paypal',
         self::AIIA => 'aiia',
+        self::IDEAL => 'ideal',
         self::SEPA_DIRECT_DEBIT => 'dd',
         self::SEPA_DIRECT_DEBIT_B2B => 'dd_b2b',
         self::INVOICE => 'kar',
