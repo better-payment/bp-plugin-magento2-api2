@@ -205,7 +205,6 @@
     </virtualType>
     <!-- BetterPaymentRequestToPayValueHandlerPool END -->
 
-
     <!-- BetterPaymentPayPalFacade START -->
     <virtualType name="BetterPaymentPayPalFacade" type="Magento\Payment\Model\Method\Adapter">
         <arguments>
@@ -273,6 +272,40 @@
         </arguments>
     </virtualType>
     <!-- BetterPaymentAiiaValueHandlerPool END -->
+
+    <!-- BetterPaymentIdealFacade START -->
+    <virtualType name="BetterPaymentIdealFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">BetterPayment\Core\Util\PaymentMethod::IDEAL</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form\Cc</argument>
+            <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\ConfigurableInfo</argument>
+            <argument name="valueHandlerPool" xsi:type="object">BetterPaymentIdealValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">BetterPaymentCommandPool</argument>
+        </arguments>
+    </virtualType>
+    <!-- BetterPaymentIdealFacade END -->
+
+    <!-- BetterPaymentIdealValueHandlerPool START -->
+    <virtualType name="BetterPaymentIdealValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">BetterPaymentIdealConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="BetterPaymentIdealConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">BetterPaymentIdealConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="BetterPaymentIdealConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">BetterPayment\Core\Util\PaymentMethod::IDEAL</argument>
+        </arguments>
+    </virtualType>
+    <!-- BetterPaymentIdealValueHandlerPool END -->
 
 
     <!-- BetterPaymentSepaDirectDebitFacade START -->

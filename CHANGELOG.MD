@@ -1,4 +1,11 @@
 This changelog follows the specifications of https://keepachangelog.com. Please, follow the specs when adding a new entry
+
+## [1.3.0] - 2024-08-23
+
+### Added
+
+- iDEAL payment method
+
 ## [1.2.0] - 2024-08-19
 
 ### Added
