@@ -53,7 +53,7 @@ class EntitySearcher
         $searchCriteria = $this->searchCriteriaBuilder->create();
 
         /** @var InvoiceInterface $invoice */
-        $invoice = $this->invoiceRepository->getList($searchCriteria)->getFirstItem();
+        $invoice = $this->invoiceRepository->getList($searchCriteria)->getLastItem();
 
         return $invoice;
     }
