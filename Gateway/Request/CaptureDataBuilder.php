@@ -2,7 +2,7 @@
 
 namespace BetterPayment\Core\Gateway\Request;
 
-use BetterPayment\Core\Util\EntitySearcher;
+use Magento\Framework\Api\Search\SearchCriteriaBuilder;
 use Magento\Payment\Gateway\Data\PaymentDataObjectInterface;
 use Magento\Payment\Gateway\Request\BuilderInterface;
 use Magento\Framework\App\Request\Http;
@@ -11,16 +11,18 @@ use Magento\Sales\Model\Order;
 
 class CaptureDataBuilder implements BuilderInterface
 {
-
     private Http $request;
     private InvoiceRepositoryInterface $invoiceRepository;
-    private EntitySearcher $entitySearcher;
+    private SearchCriteriaBuilder $searchCriteriaBuilder;
 
-    public function __construct(Http $request, InvoicerepositoryInterface $invoiceRepository, EntitySearcher $entitySearcher)
-    {
+    public function __construct(
+        Http $request,
+        InvoiceRepositoryInterface $invoiceRepository,
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+    ) {
         $this->request = $request;
         $this->invoiceRepository = $invoiceRepository;
-        $this->entitySearcher = $entitySearcher;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
     }
 
     /**
@@ -38,7 +40,7 @@ class CaptureDataBuilder implements BuilderInterface
             $invoiceId = $this->invoiceRepository->get($this->request->getParam('invoice_id'))->getIncrementId();
         }
         else {
-            $lastId = $this->entitySearcher->getInvoiceByTransactionId($payment->getLastTransId())->getIncrementId();
+            $lastId = $this->invoiceRepository->getList($this->searchCriteriaBuilder->create())->getLastItem()->getIncrementId();
             $numberOfDigits = strlen($lastId);
             $lastIdInt = (int) $lastId;
             $nextIdInt = $lastIdInt + 1;
