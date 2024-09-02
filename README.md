@@ -16,11 +16,9 @@ For each Magento minor release, we are releasing a major version.
 
 We support Magento 2.4.6 and upwards.
 
-> Magento 2.4.7 is being tested and planned for release soon.
-
 **Latest Releases for:**
 
-- Magento 2.4.6 - [Plugin Version 1.3.0](https://github.com/better-payment/bp-plugin-magento2-api2/releases/tag/1.3.0)
+- Magento 2.4.6 - [Plugin Version 1.3.1](https://github.com/better-payment/bp-plugin-magento2-api2/releases/tag/1.3.1)
 
 ## Configuration
 
